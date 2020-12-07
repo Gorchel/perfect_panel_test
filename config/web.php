@@ -43,14 +43,15 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'GET orders/orders/index/<status>' => 'orders/orders/index',
             ],
         ],
-        */
+        
     ],
     'modules' => [
         'orders' => [

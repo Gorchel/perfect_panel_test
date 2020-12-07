@@ -1,12 +1,23 @@
-<div class="order_list-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
+<?php 
+
+use app\modules\orders\assets\OrderAsset;
+use yii\bootstrap\Button;
+use yii\widgets\Menu;
+
+OrderAsset::register($this); 
+
+?>
+
+<div class="row" id="status_panel">
+    <?php
+        echo Menu::widget([
+            'options' => ['class' => 'nav nav-tabs p-b'],
+            'items' => array_map(function( $status) {
+                return ['label' => $status, 'url' => ['/orders/orders/index/'.strtolower(str_replace(' ','_',$status))]];
+            }, $statuses),
+        ]);
+       
+    ?>
+
+    <h1><?= json_encode($statuses) ?></h1>
 </div>
