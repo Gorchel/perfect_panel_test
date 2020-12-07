@@ -1,11 +1,15 @@
  <?php
  	use yii\widgets\Menu;
 
+ 	$menuStatuses = array_map(function($status) {
+            return ['label' => $status, 'url' => ['/orders/orders/index/'.strtolower(str_replace(' ','_',$status))]];
+        }, $statuses);
+
+ 	array_unshift($menuStatuses, ['label' => 'All orders', 'url' => ['/orders/orders/index/']]);
+
     echo Menu::widget([
         'options' => ['class' => 'nav nav-tabs p-b'],
-        'items' => array_map(function( $status) {
-            return ['label' => $status, 'url' => ['/orders/orders/index/'.strtolower(str_replace(' ','_',$status))]];
-        }, $statuses),
+        'items' => $menuStatuses,
     ]);
    
 ?>
