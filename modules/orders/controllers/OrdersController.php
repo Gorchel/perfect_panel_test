@@ -20,8 +20,9 @@ class OrdersController extends Controller
     public function actionIndex()
     {	
     	$orderManager = new OrderManager;
+        $ordersPaginationArray = $orderManager->getPagginationList(Yii::$app->request);
 
-    	VarDumper::dump($orderManager->getPagginationList(Yii::$app->request));
+    	// VarDumper::dump();
 
     	$statusGetter = new StatusGetter;
 
@@ -29,6 +30,7 @@ class OrdersController extends Controller
 
         return $this->render('index', [
         	'statuses' => $statusGetter->getList(),
+            'ordersPaginationArray' => $ordersPaginationArray,
         ]);
     }
 }

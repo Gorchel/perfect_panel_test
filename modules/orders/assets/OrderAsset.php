@@ -9,7 +9,7 @@ class OrderAsset extends AssetBundle
     public $sourcePath = '@app/modules/orders/assets';
     // finally your files.. 
     public $css = [
-      './assets/css/custom.css',
+      './css/custom.css',
     ];
     // public $js = [
     //   'js/first-js-file.js',

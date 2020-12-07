@@ -14,6 +14,8 @@ class OrderManager
 	{
 		$query = Orders::find();
 
+		$query->with(['users','services']);
+
 		$pagination = new Pagination([
             'defaultPageSize' => Yii::$app->getModule('orders')->params['pagination']['per_page'],
             'totalCount' => $query->count(),
@@ -36,7 +38,7 @@ class OrderManager
 	{	
 		if (!empty($request->get('status'))) {
 			$statusGetter = new StatusGetter;
-			$query->where(['status' => $statusGetter->transformStatus2Key($request->get('status'))]);
+			$query->where(['status' => $statusGetter->transformStatus2Key(str_replace('_',' ',$request->get('status')))]);
 		}
 	}
 }
