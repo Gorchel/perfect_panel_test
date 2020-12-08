@@ -7,13 +7,16 @@ OrderAsset::register($this);
 ?>
 
 <div class="row" id="status_panel">
-    <?= $this->render('status_panel', [
+    <?= $this->render('statuses/status_panel', [
         'statuses' => $statuses
     ]); ?>
 
     <?= $this->render('tables', [
-        'ordersPaginationArray' => $ordersPaginationArray
+        'ordersPaginationArray' => $ordersPaginationArray,
+        'servicesList' => $servicesList
     ]); ?>
-
-    <h1><?= json_encode($statuses) ?></h1>
 </div>
+
+<?= $this->render('pagination_panel', [
+    'ordersPaginationArray' => $ordersPaginationArray
+]); ?>

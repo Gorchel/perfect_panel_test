@@ -2,43 +2,52 @@
 
 namespace app\modules\orders\classes\orders;
 
-use app\modules\orders\models\Orders;
 use app\modules\orders\classes\statuses\StatusGetter;
-use yii\helpers\VarDumper;
-use yii\data\Pagination;
+use \yii\web\Request;
 use Yii;
 
+/**
+ * Class OrderManager
+ * @package app\modules\orders\classes\orders
+ */
 class OrderManager
-{	
-	public function getPagginationList($request)
-	{
-		$query = Orders::find();
+{
+    protected $request;
 
-		$query->with(['users','services']);
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
 
-		$pagination = new Pagination([
-            'defaultPageSize' => Yii::$app->getModule('orders')->params['pagination']['per_page'],
-            'totalCount' => $query->count(),
-        ]);
+    public function handle()
+    {
+        //Check status
+        if (!empty($this->request->get('status'))) {
+            $statusGetter = new StatusGetter;
+            $status_id = $statusGetter->transformStatus2Key($this->request->get('status'));
+            $this->request->setQueryParams(['status_id' => $status_id]);
+        }
 
-		$this->filter($query, $request);
+        //Get Pagination List
+        $ordersGetter = new OrdersGetter($this->request);
+        $paginationList = $ordersGetter->getPaginationList();
 
-		$query->offset($pagination->offset)
-        	->limit($pagination->limit);
+        //preparation of pagination data
+        $perPage = Yii::$app->getModule('orders')->params['pagination']['per_page'];
 
-        $orders = $query->all();
+        $preparePagination = [
+            'totalCount' => $paginationList['pagination']->totalCount,
+            'from' => ($paginationList['pagination']->page * $perPage) + 1,
+            'to' => ($paginationList['pagination']->page + 1) * $perPage,
+        ];
 
-		return [
-			'orders' => $orders,
-			'pagination' => $pagination,
-		];
-	}
+        //get orders
+        $orders = $paginationList['orders'];
 
-	protected function filter(&$query, $request)
-	{	
-		if (!empty($request->get('status'))) {
-			$statusGetter = new StatusGetter;
-			$query->where(['status' => $statusGetter->transformStatus2Key(str_replace('_',' ',$request->get('status')))]);
-		}
-	}
+        return [
+            'orders' => $orders,
+            'pagination' => $paginationList['pagination'],
+            'preparePagination' => $preparePagination
+        ];
+    }
 }

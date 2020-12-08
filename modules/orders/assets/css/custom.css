@@ -2944,3 +2944,18 @@ input[type="checkbox"].selectOrder{
   }
 }
 
+#pagination_panel {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  border-top: 1px solid #dddddd;
+  background-color: rgba(255,255,255,0.8);
+  left: 0;
+  padding: 0px 50px;
+}
+
+#pagination_panel  #pagination_panel_counter {
+  padding-top: 30px;
+  font-size: 16px;
+}
+

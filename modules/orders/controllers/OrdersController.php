@@ -2,10 +2,12 @@
 
 namespace app\modules\orders\controllers;
 
+use app\modules\orders\classes\services\ServicesGetter;
 use yii\web\Controller;
 use app\modules\orders\classes\statuses\StatusGetter;
 use yii\helpers\VarDumper;
 use app\modules\orders\classes\orders\OrderManager;
+use app\modules\orders\helpers\UrlHelper;
 use Yii;
 
 /**
@@ -13,23 +15,24 @@ use Yii;
  */
 class OrdersController extends Controller
 {
+
     /**
-     * Renders the index view for the module
      * @return string
      */
     public function actionIndex()
-    {	
-    	$orderManager = new OrderManager;
-        $ordersPaginationArray = $orderManager->getPagginationList(Yii::$app->request);
-
-    	// VarDumper::dump();
+    {
+    	$orderManager = new OrderManager(Yii::$app->request);
+        $ordersPaginationArray = $orderManager->handle();
 
     	$statusGetter = new StatusGetter;
 
-    	// Yii::$app->request->get('status')
+        //get service list
+        $serviceGetter = new ServicesGetter($this->request);
+        $servicesList = $serviceGetter->getOrdersServicesList();
 
         return $this->render('index', [
         	'statuses' => $statusGetter->getList(),
+            'servicesList' => $servicesList,
             'ordersPaginationArray' => $ordersPaginationArray,
         ]);
     }

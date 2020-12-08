@@ -2,9 +2,16 @@
 
 namespace app\modules\orders\classes\statuses;
 
+/**
+ * Class StatusGetter
+ * @package app\modules\orders\classes\statuses
+ */
 class StatusGetter
-{	
-	protected $list = [
+{
+    /**
+     * @var string[]
+     */
+    protected $list = [
 		0 => 'Pending',
 		1 => 'In progress',
 		2 => 'Completed',
@@ -12,14 +19,21 @@ class StatusGetter
 		4 => 'Error',
 	];
 
-	public function getList()
+    /**
+     * @return string[]
+     */
+    public function getList()
 	{
 		return $this->list;
 	}
 
-	public function transformStatus2Key($status)
+    /**
+     * @param $status
+     * @return mixed
+     */
+    public function transformStatus2Key($status)
 	{	
-		$firstCapitalLetterStatus = ucfirst($status);
+		$firstCapitalLetterStatus = ucfirst(str_replace('_',' ',$status));
 		return array_flip($this->getList())[$firstCapitalLetterStatus];
 	}
 }
