@@ -56,7 +56,8 @@ class OrdersGetter
         ]);
 
         $query->offset($pagination->offset)
-            ->limit($pagination->limit);
+            ->limit($pagination->limit)
+            ->orderBy(['orders.id' => SORT_DESC]);
 
         return [
             'orders' => $query->all(),

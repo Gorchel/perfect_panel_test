@@ -1,16 +1,14 @@
  <?php
  	use yii\widgets\Menu;
 
- 	$menuStatuses = array_map(function($status) {
-            return ['label' => $status, 'url' => ['/orders/orders/index/'.strtolower(str_replace(' ','_',$status))]];
-        }, $statuses);
-
- 	array_unshift($menuStatuses, ['label' => 'All orders', 'url' => ['/orders/orders/index']]);
-
-    echo Menu::widget([
-        'activateItems' => true,
-        'activeCssClass' => 'active',
-        'options' => ['class' => 'nav nav-tabs p-b'],
-        'items' => $menuStatuses,
-    ]);
+    $requestStatus = Yii::$app->request->get('status');
 ?>
+<ul class="nav nav-tabs p-b">
+    <li class="<?php echo empty($requestStatus) ? 'active' : '' ?>"><a href="/orders/orders/index">All orders</a></li>
+    <?php
+          foreach ($statuses as $status) {
+              $urlStatus = strtolower(str_replace(' ','_',$status));
+              echo "<li class='".($requestStatus == $urlStatus ? 'active' : '')."'><a href='/orders/orders/index/".$urlStatus."'>".$status."</a></li>";
+          }
+    ?>
+</ul>

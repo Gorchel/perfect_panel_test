@@ -1,5 +1,12 @@
 <?php
     use app\modules\orders\helpers\UrlHelper;
+
+    $requestMode= Yii::$app->request->get('mode');
+    $modes = [
+        -1 => 'All',
+        0 => 'Manual',
+        1 => 'Auto',
+    ];
 ?>
 
 <div class="dropdown">
@@ -8,8 +15,10 @@
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li class="active"><a href="<?php echo UrlHelper::getPathWithParams(['mode' => '-1']) ?>">All</a></li>
-        <li><a href="<?php echo UrlHelper::getPathWithParams(['mode' => 0]) ?>">Manual</a></li>
-        <li><a href="<?php echo UrlHelper::getPathWithParams(['mode' => 1]) ?>">Auto</a></li>
+        <?php
+            foreach ($modes as $key => $mode) {
+                echo "<li class=".($requestMode == $key ? 'active' : '')."><a href=".UrlHelper::getPathWithParams(['mode' => $key]).">".$mode."</a></li>";
+            }
+        ?>
     </ul>
 </div>
