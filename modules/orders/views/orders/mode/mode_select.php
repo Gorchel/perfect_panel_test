@@ -11,13 +11,13 @@
 
 <div class="dropdown">
     <button class="btn btn-th btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Mode
+        <?php echo \Yii::t('common', 'Mode') ?>
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
         <?php
             foreach ($modes as $key => $mode) {
-                echo "<li class=".($requestMode == $key ? 'active' : '')."><a href=".UrlHelper::getPathWithParams(['mode' => $key]).">".$mode."</a></li>";
+                echo "<li class=".($requestMode == $key ? 'active' : '')."><a href=".UrlHelper::getPathWithParams(['mode' => $key]).">".\Yii::t('common', $mode)."</a></li>";
             }
         ?>
     </ul>

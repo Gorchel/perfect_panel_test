@@ -22,6 +22,8 @@ class OrdersController extends Controller
      */
     public function actionIndex()
     {
+        \Yii::$app->language = 'ru-RU';
+
     	$orderManager = new OrderManager(Yii::$app->request);
         $ordersPaginationArray = $orderManager->handle();
 

@@ -2,19 +2,19 @@
 	<thead>
     <tr>
       <th>ID</th>
-      <th>User</th>
-      <th>Link</th>
-      <th>Quantity</th>
+      <th><?php echo \Yii::t('common', 'User') ?></th>
+      <th><?php echo \Yii::t('common', 'Link') ?></th>
+      <th><?php echo \Yii::t('common', 'Quantity') ?></th>
       <th class="dropdown-th">
           <?= $this->render('services/services_select', [
               'servicesList' => $servicesList
           ]); ?>
       </th>
-      <th>Status</th>
+      <th><?php echo \Yii::t('common', 'Status') ?></th>
       <th class="dropdown-th">
           <?= $this->render('mode/mode_select'); ?>
       </th>
-      <th>Created</th>
+      <th><?php echo \Yii::t('common', 'Created') ?></th>
     </tr>
     </thead>
     <tbody>

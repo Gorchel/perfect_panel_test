@@ -4,15 +4,15 @@
 
 <form class="form-inline text-right" action="<?php echo UrlHelper::getPath() ?>" method="get">
     <div class="input-group">
-        <input type="text" name="search" class="form-control" value="<?php echo Yii::$app->request->get('search') ?>" placeholder="Search orders" required="required">
+        <input type="text" name="search" class="form-control" value="<?php echo Yii::$app->request->get('search') ?>" placeholder="<?php echo \Yii::t('common', 'Search orders') ?>" required="required">
         <span class="input-group-btn search-select-wrap">
 
         <select class="form-control search-select" name="search-type">
             <?php
                 $searchingTypedValues = [
-                    1 => 'Order ID',
-                    2 => 'Link',
-                    3 => 'Username',
+                    1 => \Yii::t('common', 'Order ID'),
+                    2 => \Yii::t('common', 'Link'),
+                    3 => \Yii::t('common', 'Username'),
                 ];
 
                 foreach ($searchingTypedValues as $key => $value) {

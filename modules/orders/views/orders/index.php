@@ -12,12 +12,12 @@ OrderAsset::register($this);
     </div>
 </div>
 <div class="row" id="status_panel">
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <?= $this->render('statuses/status_panel', [
             'statuses' => $statuses
         ]); ?>
     </div>
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <?= $this->render('search_panel'); ?>
     </div>
 
