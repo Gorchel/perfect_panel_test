@@ -6,6 +6,11 @@ OrderAsset::register($this);
 
 ?>
 
+<div class="row">
+    <div class="col-lg-12 text-right">
+        <?= $this->render('export/link'); ?>
+    </div>
+</div>
 <div class="row" id="status_panel">
     <div class="col-lg-7">
         <?= $this->render('statuses/status_panel', [

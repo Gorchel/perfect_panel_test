@@ -14,11 +14,15 @@ class UrlHelper
      * @param array $newParam
      * @return array|false|int|string|null
      */
-    public static function getPathWithParams(array $newParam = [])
+    public static function getPathWithParams(array $newParam = [], $path = null)
     {
         $params = self::getParamsFromPath($newParam);
 
-        return self::getPath().'?'.http_build_query($params);
+        if (empty($path)) {
+            $path = self::getPath();
+        }
+
+        return $path.'?'.http_build_query($params);
     }
 
     /**

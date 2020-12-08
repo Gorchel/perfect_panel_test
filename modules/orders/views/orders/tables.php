@@ -24,7 +24,7 @@
     	?>
     		<tr>
     			<td><?php echo $order->id ?></td>
-    			<td><?php echo $order->users->first_name.' '.$order->users->last_name ?></td>
+    			<td><?php echo !empty($order->users) ? $order->users->first_name.' '.$order->users->last_name : '' ?></td>
     			<td><a href="<?php echo $order->link ?>" target='_blank'><?php echo $order->link ?></a></td>
     			<td><?php echo $order->quantity ?></td>
     			<td>

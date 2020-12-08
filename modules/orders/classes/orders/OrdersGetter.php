@@ -29,15 +29,25 @@ class OrdersGetter
     }
 
     /**
-     * @return array
+     * @return \yii\db\ActiveQuery
      */
-    public function getPaginationList()
+    public function getQuery()
     {
         $query = Orders::find();
 
         $query->with(['users','services']);
 
         $this->filter($query);
+
+        return $query;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPaginationList()
+    {
+        $query = $this->getQuery();
 
         $pagination = new Pagination([
             'defaultPageSize' => Yii::$app->getModule('orders')->params['pagination']['per_page'],

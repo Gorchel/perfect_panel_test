@@ -2,12 +2,12 @@
 
 namespace app\modules\orders\controllers;
 
+use app\modules\orders\classes\orders\ExportCsv;
 use app\modules\orders\classes\services\ServicesGetter;
 use yii\web\Controller;
 use app\modules\orders\classes\statuses\StatusGetter;
 use yii\helpers\VarDumper;
 use app\modules\orders\classes\orders\OrderManager;
-use app\modules\orders\helpers\UrlHelper;
 use Yii;
 
 /**
@@ -35,5 +35,30 @@ class OrdersController extends Controller
             'servicesList' => $servicesList,
             'ordersPaginationArray' => $ordersPaginationArray,
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionExport()
+    {
+        $exportCsv = new ExportCsv(Yii::$app->request);
+        $response = $exportCsv->handle();
+
+        if (empty($response)) {
+            return $this->render('export/empty_link');
+        }
+
+        return $this->render('export/upload_links',[
+            'links' => $response
+        ]);
+    }
+
+    /**
+     *
+     */
+    public function actionUpload()
+    {
+        VarDumper::dump(Yii::$app->request->get('path'));
     }
 }
