@@ -13,5 +13,4 @@
         'options' => ['class' => 'nav nav-tabs p-b'],
         'items' => $menuStatuses,
     ]);
-   
 ?>

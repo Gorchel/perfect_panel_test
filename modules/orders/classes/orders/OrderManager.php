@@ -3,6 +3,7 @@
 namespace app\modules\orders\classes\orders;
 
 use app\modules\orders\classes\statuses\StatusGetter;
+use yii\helpers\VarDumper;
 use \yii\web\Request;
 use Yii;
 
@@ -21,13 +22,6 @@ class OrderManager
 
     public function handle()
     {
-        //Check status
-        if (!empty($this->request->get('status'))) {
-            $statusGetter = new StatusGetter;
-            $status_id = $statusGetter->transformStatus2Key($this->request->get('status'));
-            $this->request->setQueryParams(['status_id' => $status_id]);
-        }
-
         //Get Pagination List
         $ordersGetter = new OrdersGetter($this->request);
         $paginationList = $ordersGetter->getPaginationList();

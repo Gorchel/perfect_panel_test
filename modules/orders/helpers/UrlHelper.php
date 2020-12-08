@@ -17,9 +17,16 @@ class UrlHelper
     public static function getPathWithParams(array $newParam = [])
     {
         $params = self::getParamsFromPath($newParam);
-        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        return $path.'?'.http_build_query($params);
+        return self::getPath().'?'.http_build_query($params);
+    }
+
+    /**
+     * @return array|false|int|string|null
+     */
+    public static function getPath()
+    {
+        return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
 
     /**

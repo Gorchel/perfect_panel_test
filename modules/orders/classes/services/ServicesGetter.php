@@ -2,6 +2,8 @@
 
 namespace app\modules\orders\classes\services;
 
+use app\modules\orders\classes\statuses\StatusGetter;
+
 /**
  * Class ServicesGetter
  * @package app\modules\orders\classes\services
@@ -75,8 +77,10 @@ class ServicesGetter
      */
     protected function filter(&$query)
     {
-        if (!is_null($this->request->get('status_id'))) {
-            $query->where(['orders.status' => $this->request->get('status_id')]);
+        if (!is_null($this->request->get('status'))) {
+            $statusGetter = new StatusGetter;
+            $status_id = $statusGetter->transformStatus2Key($this->request->get('status'));
+            $query->where(['orders.status' => $status_id]);
         }
     }
 }
