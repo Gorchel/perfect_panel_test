@@ -66,43 +66,7 @@ class Csv implements TypeInterface
      */
     protected function convertingStr2Csv(array $create_data)
     {
-//        // строка, которая будет записана в csv файл
-//        $csvStr = '';
-//
-//        // перебираем все данные
-//        foreach( $create_data as $row ){
-//            $cols = array();
-//
-//            foreach( $row as $col_val ){
-//                // строки должны быть в кавычках ""
-//                // кавычки " внутри строк нужно предварить такой же кавычкой "
-//                if( $col_val && preg_match('/[",;\r\n]/', $col_val) ){
-//                    // поправим перенос строки
-//                    if( $this->rowDelimiter === "\r\n" ){
-//                        $col_val = str_replace( "\r\n", '\n', $col_val );
-//                        $col_val = str_replace( "\r", '', $col_val );
-//                    }
-//                    elseif( $this->rowDelimiter === "\n" ){
-//                        $col_val = str_replace( "\n", '\r', $col_val );
-//                        $col_val = str_replace( "\r\r", '\r', $col_val );
-//                    }
-//
-//                    $col_val = str_replace( '"', '""', $col_val ); // предваряем "
-//                    $col_val = '"'. $col_val .'"'; // обрамляем в "
-//                }
-//
-//                $cols[] = $col_val; // добавляем колонку в данные
-//            }
-//
-//            VarDumper::dump(implode( $this->colDelimiter, $cols ));
-//
-//            $csvStr .= implode( $this->colDelimiter, $cols ) . $this->rowDelimiter; // добавляем строку в данные
-//        }
-//
-//        $csvStr = rtrim( $csvStr, $this->rowDelimiter );
-//
-//        return $csvStr;
-        $fh = fopen('php://temp', 'rw'); # don't create a file, attempt
+        $fh = fopen('php://temp', 'rw');
 
         # write out the data
         foreach ( $create_data as $row ) {

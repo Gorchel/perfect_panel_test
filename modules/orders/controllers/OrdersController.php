@@ -8,6 +8,7 @@ use yii\web\Controller;
 use app\modules\orders\classes\statuses\StatusGetter;
 use yii\helpers\VarDumper;
 use app\modules\orders\classes\orders\OrderManager;
+use app\modules\orders\classes\upload\UploadManager;
 use Yii;
 
 /**
@@ -59,6 +60,7 @@ class OrdersController extends Controller
      */
     public function actionUpload()
     {
-        VarDumper::dump(Yii::$app->request->get('path'));
+        $uploadManager = new UploadManager;
+        $uploadManager->upload(Yii::$app->request->get('path'));
     }
 }
