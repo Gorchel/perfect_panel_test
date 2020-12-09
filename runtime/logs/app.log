@@ -1,0 +1,163 @@
+2020-12-09 07:52:58 [172.29.0.1][-][-][error][yii\web\HeadersAlreadySentException] yii\web\HeadersAlreadySentException: Headers already sent in /app/vendor/yiisoft/yii2/helpers/BaseVarDumper.php on line 38. in /app/vendor/yiisoft/yii2/web/Response.php:370
+Stack trace:
+#0 /app/vendor/yiisoft/yii2/web/Response.php(343): yii\web\Response->sendHeaders()
+#1 /app/vendor/yiisoft/yii2/base/Application.php(398): yii\web\Response->send()
+#2 /app/web/index.php(12): yii\base\Application->run()
+#3 {main}
+2020-12-09 07:52:58 [172.29.0.1][-][-][info][application] $_GET = [
+    'lang' => 'en'
+    'page' => '2'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '2b635ba46690ffa515198a0bfb37a798'
+    '_csrf' => 'b99f0189f89fe414abef5684160dfa2311651e4e70dd8f56eab0742d942018b7a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"JT37tc_cWyWOD2dfAykf5CqV13frAXSK\";}'
+    'pma_lang' => 'ru'
+    'phpMyAdmin' => '9a82cd38c06b4d48e70073416aab07d9'
+    'pmaUser-1' => '{\"iv\":\"FTsBTrKvWvfqoYVAXfNwhA==\",\"mac\":\"a580459043fff91442d97acd688981168f0ceeb9\",\"payload\":\"wPPjQpqJO4jfusEzqUH2VQ==\"}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en-en'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:8000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost:8000/orders?lang=en'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'PHPSESSID=2b635ba46690ffa515198a0bfb37a798; _csrf=b99f0189f89fe414abef5684160dfa2311651e4e70dd8f56eab0742d942018b7a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22JT37tc_cWyWOD2dfAykf5CqV13frAXSK%22%3B%7D; pma_lang=ru; phpMyAdmin=9a82cd38c06b4d48e70073416aab07d9; pmaUser-1=%7B%22iv%22%3A%22FTsBTrKvWvfqoYVAXfNwhA%3D%3D%22%2C%22mac%22%3A%22a580459043fff91442d97acd688981168f0ceeb9%22%2C%22payload%22%3A%22wPPjQpqJO4jfusEzqUH2VQ%3D%3D%22%7D'
+    'PATH' => '/app:/app/vendor/bin:/root/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.38 (Debian) Server at localhost Port 8000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.38 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '172.29.0.3'
+    'SERVER_PORT' => '8000'
+    'REMOTE_ADDR' => '172.29.0.1'
+    'DOCUMENT_ROOT' => '/app/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/app/web'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/app/web/index.php'
+    'REMOTE_PORT' => '32856'
+    'REDIRECT_URL' => '/orders'
+    'REDIRECT_QUERY_STRING' => 'lang=en&page=2'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'lang=en&page=2'
+    'REQUEST_URI' => '/orders?lang=en&page=2'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1607500378.2069
+    'REQUEST_TIME' => 1607500378
+    'argv' => [
+        0 => 'lang=en&page=2'
+    ]
+    'argc' => 1
+    'ORDERS_PER_PAGE' => '100'
+    'EXPORT_PAGINATION_COUNT' => '5000'
+]
+2020-12-09 07:53:17 [172.29.0.1][-][2b635ba46690ffa515198a0bfb37a798][error][yii\base\ErrorException:8] yii\base\ErrorException: Undefined index: ORDERS_PER_PAGE in /app/modules/orders/config/main.php:6
+Stack trace:
+#0 /app/modules/orders/config/main.php(6): yii\base\ErrorHandler->handleError(8, 'Undefined index...', '/app/modules/or...', 6, Array)
+#1 /app/modules/orders/Module.php(26): require('/app/modules/or...')
+#2 /app/vendor/yiisoft/yii2/base/BaseObject.php(109): app\modules\orders\Module->init()
+#3 /app/vendor/yiisoft/yii2/base/Module.php(158): yii\base\BaseObject->__construct(Array)
+#4 [internal function]: yii\base\Module->__construct('orders', Object(yii\web\Application), Array)
+#5 /app/vendor/yiisoft/yii2/di/Container.php(412): ReflectionClass->newInstanceArgs(Array)
+#6 /app/vendor/yiisoft/yii2/di/Container.php(171): yii\di\Container->build('app\\modules\\ord...', Array, Array)
+#7 /app/vendor/yiisoft/yii2/BaseYii.php(365): yii\di\Container->get('app\\modules\\ord...', Array, Array)
+#8 /app/vendor/yiisoft/yii2/base/Module.php(427): yii\BaseYii::createObject(Array, Array)
+#9 /app/vendor/yiisoft/yii2/base/Module.php(586): yii\base\Module->getModule('orders')
+#10 /app/vendor/yiisoft/yii2/base/Module.php(522): yii\base\Module->createController('')
+#11 /app/vendor/yiisoft/yii2/web/Application.php(104): yii\base\Module->runAction('orders', Array)
+#12 /app/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 /app/web/index.php(12): yii\base\Application->run()
+#14 {main}
+2020-12-09 07:53:17 [172.29.0.1][-][2b635ba46690ffa515198a0bfb37a798][info][application] $_GET = [
+    'lang' => 'en'
+    'page' => '2'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '2b635ba46690ffa515198a0bfb37a798'
+    '_csrf' => 'b99f0189f89fe414abef5684160dfa2311651e4e70dd8f56eab0742d942018b7a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"JT37tc_cWyWOD2dfAykf5CqV13frAXSK\";}'
+    'pma_lang' => 'ru'
+    'phpMyAdmin' => '9a82cd38c06b4d48e70073416aab07d9'
+    'pmaUser-1' => '{\"iv\":\"FTsBTrKvWvfqoYVAXfNwhA==\",\"mac\":\"a580459043fff91442d97acd688981168f0ceeb9\",\"payload\":\"wPPjQpqJO4jfusEzqUH2VQ==\"}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en-en'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost:8000'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost:8000/orders?lang=en'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'PHPSESSID=2b635ba46690ffa515198a0bfb37a798; _csrf=b99f0189f89fe414abef5684160dfa2311651e4e70dd8f56eab0742d942018b7a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22JT37tc_cWyWOD2dfAykf5CqV13frAXSK%22%3B%7D; pma_lang=ru; phpMyAdmin=9a82cd38c06b4d48e70073416aab07d9; pmaUser-1=%7B%22iv%22%3A%22FTsBTrKvWvfqoYVAXfNwhA%3D%3D%22%2C%22mac%22%3A%22a580459043fff91442d97acd688981168f0ceeb9%22%2C%22payload%22%3A%22wPPjQpqJO4jfusEzqUH2VQ%3D%3D%22%7D'
+    'PATH' => '/app:/app/vendor/bin:/root/.composer/vendor/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.38 (Debian) Server at localhost Port 8000</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.38 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '172.29.0.3'
+    'SERVER_PORT' => '8000'
+    'REMOTE_ADDR' => '172.29.0.1'
+    'DOCUMENT_ROOT' => '/app/web'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/app/web'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/app/web/index.php'
+    'REMOTE_PORT' => '32866'
+    'REDIRECT_URL' => '/orders'
+    'REDIRECT_QUERY_STRING' => 'lang=en&page=2'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'lang=en&page=2'
+    'REQUEST_URI' => '/orders?lang=en&page=2'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1607500397.5232
+    'REQUEST_TIME' => 1607500397
+    'argv' => [
+        0 => 'lang=en&page=2'
+    ]
+    'argc' => 1
+]

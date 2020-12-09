@@ -30,7 +30,7 @@ class OrderManager
         $paginationList = $ordersGetter->getPaginationList();
 
         //preparation of pagination data
-        $perPage = Yii::$app->getModule('orders')->params['pagination']['per_page'];
+        $perPage = $_ENV['ORDERS_PER_PAGE'];
 
         $preparePagination = [
             'totalCount' => $paginationList['pagination']->totalCount,

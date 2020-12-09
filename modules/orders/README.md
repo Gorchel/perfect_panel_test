@@ -4,12 +4,18 @@
 
 ### 1. Установка
 
-Запуск docker файла 
+1.1 Запуск docker файла 
  
     docker-compose up -d
     
+1.2 Зависимости
+
+    composer require vlucas/phpdotenv
+    composer require nesbot/carbon
     
-В _config/web_ добавить routes
+1.3 Необходимо развернуть .env файл в главной директории модуля. Пример .env-default
+
+1.4 В _config/web_ добавить routes
 
     'GET orders/<status>' => 'orders',
     'GET orders/export/make_links' => 'orders/orders/export',

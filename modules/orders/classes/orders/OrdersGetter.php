@@ -51,7 +51,7 @@ class OrdersGetter
         $query = $this->getQuery();
 
         $pagination = new Pagination([
-            'defaultPageSize' => Yii::$app->getModule('orders')->params['pagination']['per_page'],
+            'defaultPageSize' => $_ENV['ORDERS_PER_PAGE'],
             'pageSizeLimit' => [1, 100],
             'totalCount' => $query->count(),
             'route' => Url::to(['/orders']),

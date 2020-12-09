@@ -52,7 +52,7 @@ class ExportCsv
             return false;
         }
 
-        $limit = Yii::$app->getModule('orders')->params['export']['pagination_count'];
+        $limit = $_ENV['EXPORT_PAGINATION_COUNT'];
 
         $pagination = new Pagination([
             'defaultPageSize' => $limit,

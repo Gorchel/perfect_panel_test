@@ -13,25 +13,6 @@ use yii\web\UploadedFile;
 class Csv implements TypeInterface
 {
     /**
-     * @var mixed
-     */
-    protected $colDelimiter;
-    /**
-     * @var mixed
-     */
-    protected $rowDelimiter;
-
-    /**
-     * Csv constructor.
-     */
-    public function __construct()
-    {
-        $this->colDelimiter = Yii::$app->getModule('orders')->params['export']['col_delimiter'];
-        $this->rowDelimiter = Yii::$app->getModule('orders')->params['export']['row_delimiter'];
-    }
-
-
-    /**
      * @param array $create_data
      * @param null $file
      * @return string

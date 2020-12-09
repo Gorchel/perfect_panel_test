@@ -1,15 +1,8 @@
-<?php 
-
-use app\modules\orders\assets\OrderAsset;
-
-OrderAsset::register($this); 
-
-?>
-    <div class="row">
-        <div class="col-lg-12 text-right">
-            <?= $this->render('lang/switcher'); ?>
-        </div>
+<div class="row">
+    <div class="col-lg-12 text-right">
+        <?= $this->render('lang/switcher'); ?>
     </div>
+</div>
 <div class="row">
     <div class="col-lg-12 text-right">
         <?= $this->render('export/link'); ?>

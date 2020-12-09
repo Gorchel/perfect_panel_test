@@ -17,7 +17,6 @@ use Yii;
  */
 class OrdersController extends Controller
 {
-
     /**
      * @return string
      */
