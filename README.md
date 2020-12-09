@@ -15,11 +15,38 @@
     
 1.3 Необходимо развернуть .env файл в главной директории модуля. Пример .env-default
 
-1.4 В _config/web_ добавить routes
+1.4 В _config/web_ добавить routes, module, i18n
+```
+    'components' => [
+        'urlManager' => [
+            ...
+            'rules' => [
+                ...
+                'GET orders/<status>' => 'orders',
+                'GET orders/export/make_links' => 'orders/orders/export',
+                'GET orders/export/upload' => 'orders/orders/upload',
+            ]
+        ],
+        i18n' => [
+            'translations' => [
+                ...
+                'orders*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/modules/orders/messages',
+                ],
+            ]
+        ]
+    ]
+```
 
-    'GET orders/<status>' => 'orders',
-    'GET orders/export/make_links' => 'orders/orders/export',
-    'GET orders/export/upload' => 'orders/orders/upload',
+```
+    'modules' => [
+        ...
+        'orders' => [
+            'class' => 'app\modules\orders\Module',
+        ],
+    ],
+```
     
 ### 2. Структура модуля
       orders/assets/      стили и скрипты модуля

@@ -8,7 +8,7 @@
 
 <div class="dropdown">
     <button class="btn btn-th btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <?php echo \Yii::t('common', 'Service') ?>
+        <?php echo \Yii::t('orders', 'Service') ?>
         <span class="caret"></span>
     </button>
 
