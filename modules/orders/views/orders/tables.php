@@ -2,21 +2,21 @@
 	<thead>
     <tr>
       <th>ID</th>
-      <th><?php echo \Yii::t('orders', 'User') ?></th>
-      <th><?php echo \Yii::t('orders', 'Link') ?></th>
-      <th><?php echo \Yii::t('orders', 'Quantity') ?></th>
+      <th><?php echo \Yii::t('orders', 'orders.user') ?></th>
+      <th><?php echo \Yii::t('orders', 'orders.link') ?></th>
+      <th><?php echo \Yii::t('orders', 'orders.quantity') ?></th>
       <th class="dropdown-th">
           <?= $this->render('services/services_select', [
               'servicesList' => $servicesList
           ]); ?>
       </th>
-      <th><?php echo \Yii::t('orders', 'Status') ?></th>
+      <th><?php echo \Yii::t('orders', 'orders.status') ?></th>
       <th class="dropdown-th">
           <?= $this->render('mode/mode_select', [
                   'modes' => $modes,
           ]); ?>
       </th>
-      <th><?php echo \Yii::t('orders', 'Created') ?></th>
+      <th><?php echo \Yii::t('orders', 'orders.created') ?></th>
     </tr>
     </thead>
     <tbody>

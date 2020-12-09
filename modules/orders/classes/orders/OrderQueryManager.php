@@ -105,7 +105,7 @@ class OrderQueryManager
                 case 2:
                     $value = $this->filters['search'];
 
-                    $query->where(['like','link',$value]);
+                    $query->where(['like', 'link', $value]);
                     break;
                 case 3:
                     $value = $this->filters['search'];
@@ -113,6 +113,7 @@ class OrderQueryManager
                     $query->joinWith([
                          'users' => function($query) use ($value) {
                              $query->where(['like', 'CONCAT(users.first_name," ",users.last_name)', $value]);
+                             $query->orWhere(['like', 'CONCAT(users.last_name," ",users.first_name)', $value]);
                          },
                     ]);
                     break;

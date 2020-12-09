@@ -8,9 +8,13 @@ namespace orders\helpers;
  */
 class UrlHelper
 {
+
     /**
+     * Method generate url and change selected params
+     *
      * @param array $newParam
-     * @return array|false|int|string|null
+     * @param null $path
+     * @return string
      */
     public static function getPathWithParams(array $newParam = [], $path = null)
     {
@@ -24,6 +28,8 @@ class UrlHelper
     }
 
     /**
+     * Return current path
+     *
      * @return array|false|int|string|null
      */
     public static function getPath()

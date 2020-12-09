@@ -27,20 +27,18 @@ class OrdersController extends Controller
     {
         $filterValidation = new FilterValidation(Yii::$app->request);
         $filters = $filterValidation->validate();
-//
+
     	$orderManager = new OrderManager($filters);
         $paginationList = $orderManager->handle();
 
         $serviceManager= new ServicesManager($filters);
         $servicesList = $serviceManager->getList();
 
-        $searchTypes = FilterGetter::SEARCH_TYPES;
-
         return $this->render('index', [
         	'statuses' => StatusGetter::STATUSES_LIST,
             'servicesList' => $servicesList,
             'paginationList' => $paginationList,
-            'searchTypes' => $searchTypes,
+            'searchTypes' => FilterGetter::SEARCH_TYPES,
             'modes' => ModeGetter::MODES,
         ]);
     }
