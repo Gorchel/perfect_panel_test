@@ -64,6 +64,21 @@
     (new yii\web\Application($config))->run();
 ```
 
+1.6 Изменить содержимое config/db.php
+
+```
+    <?php
+    
+    return [
+        'class' => 'yii\db\Connection',
+        'dsn' => $_ENV['DB_CONNECTION'].':host='.$_ENV['DB_HOST'].';dbname='.$_ENV['DB_DATABASE'],
+        'username' => $_ENV['DB_USERNAME'],
+        'password' => $_ENV['DB_PASSWORD'],
+        'charset' => 'utf8',
+    ];
+```
+
+
 ### 2. Структура модуля
       orders/assets/      стили и скрипты модуля
       classes/            основной функционал работы с модулем
