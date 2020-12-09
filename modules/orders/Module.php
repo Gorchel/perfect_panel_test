@@ -24,13 +24,6 @@ class Module extends \yii\base\Module
         $this->layout = 'main';
 
         \Yii::configure($this, require(__DIR__ . '/config/main.php'));
-
-        $this->setAliases([
-            'OrderAsset' => __DIR__ . '/assets'
-        ]);
-
-        $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
-        $dotenv->load();
     }
 
     public $depends = [

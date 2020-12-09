@@ -47,7 +47,18 @@
         ],
     ],
 ```
+
+1.5 В _web/index.php_ добавить
+```
+    ...
+    $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__.'/../');
+    $dotenv->load();
+    ...
+    $config = require __DIR__ . '/../config/web.php';
     
+    (new yii\web\Application($config))->run();
+```
+
 ### 2. Структура модуля
       orders/assets/      стили и скрипты модуля
       classes/            основной функционал работы с модулем

@@ -11,6 +11,8 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'sourceLanguage' => 'en',
+    'language' => 'en',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -48,10 +50,19 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'GET orders/orders/index/<status>' => 'orders/orders/index',
+                'GET orders/<status>' => 'orders',
+                'GET orders/export/make_links' => 'orders/orders/export',
+                'GET orders/export/upload' => 'orders/orders/upload',
             ],
         ],
-        
+        'i18n' => [
+            'translations' => [
+                'orders*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/modules/orders/messages',
+                ],
+            ],
+        ],
     ],
     'modules' => [
         'orders' => [
