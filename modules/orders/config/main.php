@@ -12,4 +12,5 @@ return [
             'row_delimiter' => "\r\n",
         ],
     ],
+    'defaultRoute' => 'orders',
 ];

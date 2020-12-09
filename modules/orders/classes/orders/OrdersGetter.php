@@ -6,6 +6,7 @@ use app\modules\orders\classes\statuses\StatusGetter;
 use app\modules\orders\models\Orders;
 use yii\data\Pagination;
 use Yii;
+use yii\helpers\Url;
 use yii\helpers\VarDumper;
 
 /**
@@ -53,6 +54,7 @@ class OrdersGetter
             'defaultPageSize' => Yii::$app->getModule('orders')->params['pagination']['per_page'],
             'pageSizeLimit' => [1, 100],
             'totalCount' => $query->count(),
+            'route' => Url::to(['/orders']),
         ]);
 
         $query->offset($pagination->offset)
