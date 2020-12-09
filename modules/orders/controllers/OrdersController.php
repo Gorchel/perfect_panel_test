@@ -9,6 +9,7 @@ use app\modules\orders\classes\statuses\StatusGetter;
 use yii\helpers\VarDumper;
 use app\modules\orders\classes\orders\OrderManager;
 use app\modules\orders\classes\upload\UploadManager;
+use app\modules\orders\classes\lang\LanguageSwitcher;
 use Yii;
 
 /**
@@ -22,7 +23,8 @@ class OrdersController extends Controller
      */
     public function actionIndex()
     {
-        \Yii::$app->language = 'ru-RU';
+        $langSwitcher = new LanguageSwitcher(Yii::$app->request->get('lang'));
+        $langSwitcher->switching();
 
     	$orderManager = new OrderManager(Yii::$app->request);
         $ordersPaginationArray = $orderManager->handle();
