@@ -4,12 +4,10 @@
 
 use app\modules\orders\assets\OrderAsset;
 use yii\helpers\Html;
-use app\assets\AppAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Url;
 
-AppAsset::register($this);
 OrderAsset::register($this);
 ?>
 
