@@ -3,8 +3,9 @@
 namespace app\modules\orders\classes\services;
 
 use app\modules\orders\classes\statuses\StatusGetter;
+use yii\db\Query;
 
-/**
+    /**
  * Class ServicesGetter
  * @package app\modules\orders\classes\services
  */
@@ -30,7 +31,6 @@ class ServicesGetter
     public function getOrdersServicesList()
 	{
 	    $list = $this->getList();
-//        $list = $this->makePrettyList($list);
 
 		return $list;
 	}
@@ -40,7 +40,7 @@ class ServicesGetter
      */
     protected function getList()
     {
-        $query = (new \yii\db\Query());
+        $query = (new Query());
         $query->select(['services.id as id, services.name as name, COUNT(orders.id) as count'])
             ->from('services')
             ->rightJoin('orders', '`orders`.`service_id` = `services`.`id`');
@@ -51,27 +51,6 @@ class ServicesGetter
             ->all();
     }
 
-
-    /**
-     * @param array $list
-     * @return array
-     */
-    protected function makePrettyList(array $list): array
-    {
-        $prettyList = [];
-
-        if (!empty($list)) {
-            foreach ($list as $itemArr) {
-                $prettyList[$itemArr['id']] = [
-                    'name' => $itemArr['name'],
-                    'count' => $itemArr['count'],
-                ];
-            }
-        }
-
-        return $prettyList;
-    }
-
     /**
      * @param $query
      */
@@ -79,8 +58,8 @@ class ServicesGetter
     {
         if (!is_null($this->request->get('status'))) {
             $statusGetter = new StatusGetter;
-            $status_id = $statusGetter->transformStatus2Key($this->request->get('status'));
-            $query->where(['orders.status' => $status_id]);
+            $statusId = $statusGetter->transformStatus2Key($this->request->get('status'));
+            $query->where(['orders.status' => $statusId]);
         }
     }
 }

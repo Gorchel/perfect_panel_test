@@ -4,9 +4,7 @@ namespace app\modules\orders\classes\orders;
 
 use app\modules\orders\classes\export\ExportManager;
 use app\modules\orders\classes\export\types\Csv;
-use app\modules\orders\classes\statuses\StatusGetter;
 use yii\data\Pagination;
-use yii\helpers\VarDumper;
 use \yii\web\Request;
 use Yii;
 
@@ -20,6 +18,9 @@ class ExportCsv
      * @var Request
      */
     protected $request;
+    /**
+     * @var ExportManager
+     */
     protected $exportManager;
 
     /**
@@ -39,8 +40,9 @@ class ExportCsv
         $this->exportManager = new ExportManager(new Csv());
     }
 
+
     /**
-     * @return false
+     * @return array|false
      */
     public function handle()
     {

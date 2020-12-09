@@ -3,8 +3,6 @@
 namespace app\modules\orders\classes\lang;
 
 use Yii;
-use app\modules\orders\classes\export\types\TypeInterface;
-use yii\helpers\VarDumper;
 
 /**
  * Class LanguageSwitcher
@@ -40,10 +38,10 @@ class LanguageSwitcher
         $session = Yii::$app->session;
 
         if (!empty($this->lang)) {
-            \Yii::$app->language = $this->lang;
+            Yii::$app->language = $this->lang;
             $session->set('language', $this->lang);
         } else {
-            \Yii::$app->language = $session->get('language');
+            Yii::$app->language = $session->get('language');
         }
 
     }

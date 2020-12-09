@@ -13,20 +13,20 @@ use yii\web\UploadedFile;
 class Csv implements TypeInterface
 {
     /**
-     * @param array $create_data
+     * @param array $createData
      * @param null $file
      * @return string
      */
-    public function store(array $create_data, ?string $file = null): string
+    public function store(array $createData, ?string $file = null): string
     {
-        if( !is_array($create_data) )
+        if( !is_array($createData) )
             return false;
 
         if($file && !is_dir(dirname($file))) {
             return false;
         }
 
-        $csvStr = $this->convertingStr2Csv($create_data);
+        $csvStr = $this->convertingStr2Csv($createData);
 
         file_put_contents($file, $csvStr);
 
@@ -42,15 +42,15 @@ class Csv implements TypeInterface
     }
 
     /**
-     * @param array $create_data
+     * @param array $createData
      * @return false|string
      */
-    protected function convertingStr2Csv(array $create_data)
+    protected function convertingStr2Csv(array $createData)
     {
         $fh = fopen('php://temp', 'rw');
 
         # write out the data
-        foreach ( $create_data as $row ) {
+        foreach ( $createData as $row ) {
             fputcsv($fh, $row);
         }
         rewind($fh);

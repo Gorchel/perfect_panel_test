@@ -1,5 +1,4 @@
 <?php
-    use yii\widgets\Menu;
     use app\modules\orders\helpers\UrlHelper;
 
     $requestServices = Yii::$app->request->get('service_id');

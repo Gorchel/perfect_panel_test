@@ -2,10 +2,7 @@
 
 namespace app\modules\orders\classes\orders;
 
-use app\modules\orders\classes\statuses\StatusGetter;
-use yii\helpers\VarDumper;
 use \yii\web\Request;
-use Yii;
 
 /**
  * Class OrderManager

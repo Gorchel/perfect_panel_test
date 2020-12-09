@@ -1,18 +1,19 @@
 <?php
     use app\modules\orders\helpers\UrlHelper;
+    use Yii;
 ?>
 
 <form class="form-inline text-right" action="<?php echo UrlHelper::getPath() ?>" method="get">
     <div class="input-group">
-        <input type="text" name="search" class="form-control" value="<?php echo Yii::$app->request->get('search') ?>" placeholder="<?php echo \Yii::t('orders', 'Search orders') ?>" required="required">
+        <input type="text" name="search" class="form-control" value="<?php echo Yii::$app->request->get('search') ?>" placeholder="<?php echo Yii::t('orders', 'Search orders') ?>" required="required">
         <span class="input-group-btn search-select-wrap">
 
         <select class="form-control search-select" name="search-type">
             <?php
                 $searchingTypedValues = [
-                    1 => \Yii::t('orders', 'Order ID'),
-                    2 => \Yii::t('orders', 'Link'),
-                    3 => \Yii::t('orders', 'Username'),
+                    1 => Yii::t('orders', 'Order ID'),
+                    2 => Yii::t('orders', 'Link'),
+                    3 => Yii::t('orders', 'Username'),
                 ];
 
                 foreach ($searchingTypedValues as $key => $value) {

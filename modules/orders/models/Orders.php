@@ -3,8 +3,8 @@
 namespace app\modules\orders\models;
 
 use app\modules\orders\classes\statuses\StatusGetter;
+use yii\db\ActiveRecord;
 use Carbon\Carbon;
-use Yii;
 
 /**
  * This is the model class for table "orders".
@@ -18,7 +18,7 @@ use Yii;
  * @property int $created_at
  * @property int $mode 0 - Manual, 1 - Auto
  */
-class Orders extends \yii\db\ActiveRecord
+class Orders extends ActiveRecord
 {   
     protected $modes = [
         0 => 'Manual',

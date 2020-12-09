@@ -2,8 +2,6 @@
 
 namespace app\modules\orders\helpers;
 
-use yii\helpers\Url;
-
 /**
  * Class UrlHelper
  * @package app\modules\orders\helpers

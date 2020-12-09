@@ -11,7 +11,7 @@
 
 <div class="dropdown">
     <button class="btn btn-th btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <?php echo \Yii::t('orders', 'Mode') ?>
+        <?php echo Yii::t('orders', 'Mode') ?>
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">

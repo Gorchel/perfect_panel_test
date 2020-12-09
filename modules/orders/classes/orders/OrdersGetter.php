@@ -5,9 +5,7 @@ namespace app\modules\orders\classes\orders;
 use app\modules\orders\classes\statuses\StatusGetter;
 use app\modules\orders\models\Orders;
 use yii\data\Pagination;
-use Yii;
 use yii\helpers\Url;
-use yii\helpers\VarDumper;
 
 /**
  * Class OrdersGetter

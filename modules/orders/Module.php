@@ -2,8 +2,6 @@
 
 namespace app\modules\orders;
 
-use yii\helpers\VarDumper;
-
 /**
  * order_list module definition class
  */

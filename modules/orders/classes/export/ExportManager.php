@@ -2,7 +2,6 @@
 
 namespace app\modules\orders\classes\export;
 
-use Yii;
 use app\modules\orders\classes\export\types\TypeInterface;
 
 /**

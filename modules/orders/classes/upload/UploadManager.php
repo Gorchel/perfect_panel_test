@@ -2,9 +2,6 @@
 
 namespace app\modules\orders\classes\upload;
 
-use yii\web\UploadedFile;
-use Yii;
-
 /**
  * Class UploadManager
  * @package app\modules\orders\classes\upload
