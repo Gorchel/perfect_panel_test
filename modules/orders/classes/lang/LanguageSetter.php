@@ -3,12 +3,13 @@
 namespace orders\classes\lang;
 
 use Yii;
+use yii\helpers\VarDumper;
 
 /**
- * Class LanguageSwitcher
+ * Class LanguageSetter
  * @package orders\classes\lang
  */
-class LanguageSwitcher
+class LanguageSetter
 {
     /**
      * @var string
@@ -32,17 +33,11 @@ class LanguageSwitcher
     }
 
     /**
-     *
+     * Set localization
      */
-    public function switching() {
-        $session = Yii::$app->session;
-
+    public function set() {
         if (!empty($this->lang)) {
             Yii::$app->language = $this->lang;
-            $session->set('language', $this->lang);
-        } else {
-            Yii::$app->language = $session->get('language');
         }
-
     }
 }

@@ -2,11 +2,6 @@
     use orders\helpers\UrlHelper;
 
     $requestMode= Yii::$app->request->get('mode');
-    $modes = [
-        -1 => 'All',
-        0 => 'Manual',
-        1 => 'Auto',
-    ];
 ?>
 
 <div class="dropdown">

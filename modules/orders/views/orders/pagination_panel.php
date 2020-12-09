@@ -1,17 +1,21 @@
 <?php
     use yii\widgets\LinkPager;
+
+    $currentPage = $pagination->page;
+    $perPage = $pagination->defaultPageSize;
+
 ?>
 
 <div class="row" id="pagination_panel">
     <div class="col-lg-6">
         <?= LinkPager::widget([
-            'pagination' => $ordersPaginationArray['pagination'],
+            'pagination' => $pagination,
         ]); ?>
     </div>
     <div class="col-lg-6 pull-right" id="pagination_panel_counter">
         <p class="text-right">
-            <?php echo $ordersPaginationArray['preparePagination']['from']?> to <?php echo $ordersPaginationArray['preparePagination']['to']?>
-            of <?php echo $ordersPaginationArray['preparePagination']['totalCount']?>
+            <?php echo ($currentPage * $perPage) + 1?> to <?php echo (($currentPage + 1) * $perPage)?>
+            of <?php echo $pagination->totalCount?>
         </p>
     </div>
 </div>

@@ -2,13 +2,16 @@
 
 namespace orders\controllers;
 
+use orders\classes\getters\FilterGetter;
+use orders\classes\getters\ModeGetter;
 use orders\classes\orders\ExportCsv;
-use orders\classes\services\ServicesGetter;
+use orders\classes\services\ServicesManager;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
-use orders\classes\statuses\StatusGetter;
+use orders\classes\getters\StatusGetter;
 use orders\classes\orders\OrderManager;
 use orders\classes\upload\UploadManager;
-use orders\classes\lang\LanguageSwitcher;
+use orders\classes\orders\FilterValidation;
 use Yii;
 
 /**
@@ -18,25 +21,27 @@ class OrdersController extends Controller
 {
     /**
      * @return string
+     * @throws \yii\base\ErrorException
      */
     public function actionIndex()
     {
-        $langSwitcher = new LanguageSwitcher(Yii::$app->request->get('lang'));
-        $langSwitcher->switching();
+        $filterValidation = new FilterValidation(Yii::$app->request);
+        $filters = $filterValidation->validate();
+//
+    	$orderManager = new OrderManager($filters);
+        $paginationList = $orderManager->handle();
 
-    	$orderManager = new OrderManager(Yii::$app->request);
-        $ordersPaginationArray = $orderManager->handle();
+        $serviceManager= new ServicesManager($filters);
+        $servicesList = $serviceManager->getList();
 
-    	$statusGetter = new StatusGetter;
-
-        //get service list
-        $serviceGetter = new ServicesGetter($this->request);
-        $servicesList = $serviceGetter->getOrdersServicesList();
+        $searchTypes = FilterGetter::SEARCH_TYPES;
 
         return $this->render('index', [
-        	'statuses' => $statusGetter->getList(),
+        	'statuses' => StatusGetter::STATUSES_LIST,
             'servicesList' => $servicesList,
-            'ordersPaginationArray' => $ordersPaginationArray,
+            'paginationList' => $paginationList,
+            'searchTypes' => $searchTypes,
+            'modes' => ModeGetter::MODES,
         ]);
     }
 

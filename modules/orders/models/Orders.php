@@ -2,7 +2,7 @@
 
 namespace orders\models;
 
-use orders\classes\statuses\StatusGetter;
+use orders\classes\getters\StatusGetter;
 use yii\db\ActiveRecord;
 use Carbon\Carbon;
 
@@ -56,9 +56,8 @@ class Orders extends ActiveRecord
     }
 
     public function getStatusName()
-    {   
-        $statusGetter = new StatusGetter;
-        return $statusGetter->getList()[$this->status];
+    {
+        return StatusGetter::STATUSES_LIST[$this->status];
     }
 
     public function getModeName()

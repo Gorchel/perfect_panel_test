@@ -2,6 +2,7 @@
 
 namespace orders;
 
+use orders\classes\lang\LanguageSetter;
 use Yii;
 use yii\base\Module as ParentModule;
 
@@ -25,7 +26,9 @@ class Module extends ParentModule
         $this->layout = 'main';
 
         Yii::configure($this, require(__DIR__ . '/config/main.php'));
-//        Yii::setPathOfAlias('mynamespace', '/var/www/common/mynamespace/');
+
+        $langSwitcher = new LanguageSetter($_ENV['LOCAL_LANG']);
+        $langSwitcher->set();
     }
 
     public $depends = [

@@ -1,10 +1,5 @@
 <div class="row">
     <div class="col-lg-12 text-right">
-        <?= $this->render('lang/switcher'); ?>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12 text-right">
         <?= $this->render('export/link'); ?>
     </div>
 </div>
@@ -15,15 +10,18 @@
         ]); ?>
     </div>
     <div class="col-lg-4">
-        <?= $this->render('search_panel'); ?>
+        <?= $this->render('search_panel', [
+            'searchTypes' => $searchTypes
+        ]); ?>
     </div>
 
     <?= $this->render('tables', [
-        'ordersPaginationArray' => $ordersPaginationArray,
-        'servicesList' => $servicesList
+        'paginationList' => $paginationList,
+        'servicesList' => $servicesList,
+        'modes' => $modes,
     ]); ?>
 </div>
 
 <?= $this->render('pagination_panel', [
-    'ordersPaginationArray' => $ordersPaginationArray
+    'pagination' => $paginationList['pagination']
 ]); ?>

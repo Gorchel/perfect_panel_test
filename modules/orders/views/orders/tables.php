@@ -12,15 +12,17 @@
       </th>
       <th><?php echo \Yii::t('orders', 'Status') ?></th>
       <th class="dropdown-th">
-          <?= $this->render('mode/mode_select'); ?>
+          <?= $this->render('mode/mode_select', [
+                  'modes' => $modes,
+          ]); ?>
       </th>
       <th><?php echo \Yii::t('orders', 'Created') ?></th>
     </tr>
     </thead>
     <tbody>
     	<?php
-    		if (!empty($ordersPaginationArray['orders'])) {
-    			foreach ($ordersPaginationArray['orders'] as $order) {
+    		if (!empty($paginationList['orders'])) {
+    			foreach ($paginationList['orders'] as $order) {
     	?>
     		<tr>
     			<td><?php echo $order->id ?></td>
