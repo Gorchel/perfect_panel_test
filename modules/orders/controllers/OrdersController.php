@@ -1,14 +1,14 @@
 <?php
 
-namespace app\modules\orders\controllers;
+namespace orders\controllers;
 
-use app\modules\orders\classes\orders\ExportCsv;
-use app\modules\orders\classes\services\ServicesGetter;
+use orders\classes\orders\ExportCsv;
+use orders\classes\services\ServicesGetter;
 use yii\web\Controller;
-use app\modules\orders\classes\statuses\StatusGetter;
-use app\modules\orders\classes\orders\OrderManager;
-use app\modules\orders\classes\upload\UploadManager;
-use app\modules\orders\classes\lang\LanguageSwitcher;
+use orders\classes\statuses\StatusGetter;
+use orders\classes\orders\OrderManager;
+use orders\classes\upload\UploadManager;
+use orders\classes\lang\LanguageSwitcher;
 use Yii;
 
 /**

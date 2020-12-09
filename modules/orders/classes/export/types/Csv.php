@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\orders\classes\export\types;
+namespace orders\classes\export\types;
 
 use Yii;
 use yii\helpers\VarDumper;
@@ -8,7 +8,7 @@ use yii\web\UploadedFile;
 
 /**
  * Class Csv
- * @package app\modules\orders\classes\export\types
+ * @package orders\classes\export\types
  */
 class Csv implements TypeInterface
 {

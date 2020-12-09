@@ -1,16 +1,19 @@
 <?php
 
-namespace app\modules\orders;
+namespace orders;
+
+use Yii;
+use yii\base\Module as ParentModule;
 
 /**
  * order_list module definition class
  */
-class Module extends \yii\base\Module
+class Module extends ParentModule
 {
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'app\modules\orders\controllers';
+    public $controllerNamespace = 'orders\controllers';
 
     /**
      * {@inheritdoc}
@@ -21,7 +24,8 @@ class Module extends \yii\base\Module
 
         $this->layout = 'main';
 
-        \Yii::configure($this, require(__DIR__ . '/config/main.php'));
+        Yii::configure($this, require(__DIR__ . '/config/main.php'));
+//        Yii::setPathOfAlias('mynamespace', '/var/www/common/mynamespace/');
     }
 
     public $depends = [

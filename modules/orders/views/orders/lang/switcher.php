@@ -1,5 +1,5 @@
 <?php
-  use app\modules\orders\helpers\UrlHelper;
+  use orders\helpers\UrlHelper;
   use yii\helpers\Html;
 
   echo Html::a('en', [UrlHelper::getPathWithParams(['lang' => 'en'])]);

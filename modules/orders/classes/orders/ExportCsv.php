@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\orders\classes\orders;
+namespace orders\classes\orders;
 
-use app\modules\orders\classes\export\ExportManager;
-use app\modules\orders\classes\export\types\Csv;
+use orders\classes\export\ExportManager;
+use orders\classes\export\types\Csv;
 use yii\data\Pagination;
 use \yii\web\Request;
 use Yii;
 
 /**
  * Class ExportCsv
- * @package app\modules\orders\classes\orders
+ * @package orders\classes\orders
  */
 class ExportCsv
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\orders\classes\statuses;
+namespace orders\classes\statuses;
 
 /**
  * Class StatusGetter
- * @package app\modules\orders\classes\statuses
+ * @package orders\classes\statuses
  */
 class StatusGetter
 {

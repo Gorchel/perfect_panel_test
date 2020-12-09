@@ -1,5 +1,5 @@
 <?php
-    use app\modules\orders\helpers\UrlHelper;
+    use orders\helpers\UrlHelper;
 
     $requestMode= Yii::$app->request->get('mode');
     $modes = [

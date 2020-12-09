@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\orders\classes\export\types;
+namespace orders\classes\export\types;
 
 use Yii;
 

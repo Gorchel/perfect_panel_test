@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\orders\classes\upload;
+namespace orders\classes\upload;
 
 /**
  * Class UploadManager
- * @package app\modules\orders\classes\upload
+ * @package orders\classes\upload
  */
 class UploadManager
 {

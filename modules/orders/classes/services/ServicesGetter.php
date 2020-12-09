@@ -1,13 +1,13 @@
 <?php
 
-namespace app\modules\orders\classes\services;
+namespace orders\classes\services;
 
-use app\modules\orders\classes\statuses\StatusGetter;
+use orders\classes\statuses\StatusGetter;
 use yii\db\Query;
 
     /**
  * Class ServicesGetter
- * @package app\modules\orders\classes\services
+ * @package orders\classes\services
  */
 class ServicesGetter
 {

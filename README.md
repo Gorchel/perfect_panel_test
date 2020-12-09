@@ -17,6 +17,11 @@
 
 1.4 В _config/web_ добавить routes, module, i18n
 ```
+    'aliases' => [
+        ...
+        '@orders' => '@app/modules/orders',
+    ],
+    ...
     'components' => [
         'urlManager' => [
             ...
@@ -32,7 +37,7 @@
                 ...
                 'orders*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/modules/orders/messages',
+                    'basePath' => '@orders/messages',
                 ],
             ]
         ]
@@ -43,7 +48,7 @@
     'modules' => [
         ...
         'orders' => [
-            'class' => 'app\modules\orders\Module',
+            'class' => 'orders\Module',
         ],
     ],
 ```

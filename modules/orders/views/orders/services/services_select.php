@@ -1,5 +1,5 @@
 <?php
-    use app\modules\orders\helpers\UrlHelper;
+    use orders\helpers\UrlHelper;
 
     $requestServices = Yii::$app->request->get('service_id');
     $sumServicesList = array_sum(array_column($servicesList, 'count'));

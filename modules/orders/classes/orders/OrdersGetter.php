@@ -1,15 +1,15 @@
 <?php
 
-namespace app\modules\orders\classes\orders;
+namespace orders\classes\orders;
 
-use app\modules\orders\classes\statuses\StatusGetter;
-use app\modules\orders\models\Orders;
+use orders\classes\statuses\StatusGetter;
+use orders\models\Orders;
 use yii\data\Pagination;
 use yii\helpers\Url;
 
 /**
  * Class OrdersGetter
- * @package app\modules\orders\classes\orders
+ * @package orders\classes\orders
  */
 class OrdersGetter
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\orders\models;
+namespace orders\models;
 
-use app\modules\orders\classes\statuses\StatusGetter;
+use orders\classes\statuses\StatusGetter;
 use yii\db\ActiveRecord;
 use Carbon\Carbon;
 

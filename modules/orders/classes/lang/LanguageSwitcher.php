@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\orders\classes\lang;
+namespace orders\classes\lang;
 
 use Yii;
 
 /**
  * Class LanguageSwitcher
- * @package app\modules\orders\classes\lang
+ * @package orders\classes\lang
  */
 class LanguageSwitcher
 {

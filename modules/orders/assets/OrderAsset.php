@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\orders\assets;
+namespace orders\assets;
 
 use yii\web\AssetBundle;
 class OrderAsset extends AssetBundle

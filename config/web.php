@@ -10,6 +10,7 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@orders' => '@app/modules/orders',
     ],
     'sourceLanguage' => 'en',
     'language' => 'en',
@@ -59,14 +60,14 @@ $config = [
             'translations' => [
                 'orders*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/modules/orders/messages',
+                    'basePath' => '@orders/messages',
                 ],
             ],
         ],
     ],
     'modules' => [
         'orders' => [
-            'class' => 'app\modules\orders\Module',
+            'class' => 'orders\Module',
             // ... другие настройки модуля ...
         ],
     ],

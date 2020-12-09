@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\orders\classes\orders;
+namespace orders\classes\orders;
 
 use \yii\web\Request;
 
@@ -9,7 +9,7 @@ use \yii\web\Request;
  *
  * Generates data for the table
  *
- * @package app\modules\orders\classes\orders
+ * @package orders\classes\orders
  */
 class OrderManager
 {

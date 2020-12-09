@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\orders\classes\export;
+namespace orders\classes\export;
 
-use app\modules\orders\classes\export\types\TypeInterface;
+use orders\classes\export\types\TypeInterface;
 
 /**
  * Class ExportManager
- * @package app\modules\orders\classes\export
+ * @package orders\classes\export
  */
 class ExportManager
 {

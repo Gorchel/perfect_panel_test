@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\orders\helpers;
+namespace orders\helpers;
 
 /**
  * Class UrlHelper
- * @package app\modules\orders\helpers
+ * @package orders\helpers
  */
 class UrlHelper
 {
