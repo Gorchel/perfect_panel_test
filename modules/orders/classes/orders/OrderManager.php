@@ -33,8 +33,8 @@ class OrderManager
     public function handle()
     {
         //Get Pagination List
-        $ordersGetter = new OrderQueryManager($this->filters);
-        $paginationList = $ordersGetter->getPaginationList();
+        $ordersQueryManager = new OrderQueryManager($this->filters);
+        $paginationList = $ordersQueryManager->getPaginationList();
 
         //get orders
         $orders = $paginationList['orders'];

@@ -12,25 +12,20 @@ use yii\web\UploadedFile;
  */
 class Csv implements TypeInterface
 {
+
     /**
+     * Method store string convert array to csv and store
+     *
      * @param array $createData
-     * @param null $file
      * @return string
      */
-    public function store(array $createData, ?string $file = null): string
+    public function convert(array $createData): string
     {
-        if( !is_array($createData) )
-            return false;
-
-        if($file && !is_dir(dirname($file))) {
+        if(!is_array($createData)) {
             return false;
         }
 
-        $csvStr = $this->convertingStr2Csv($createData);
-
-        file_put_contents($file, $csvStr);
-
-        return $file;
+        return $this->convertingStr2Csv($createData);
     }
 
     /**

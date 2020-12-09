@@ -29,7 +29,7 @@
                 ...
                 'GET orders/<status>' => 'orders',
                 'GET orders/export/make_links' => 'orders/orders/export',
-                'GET orders/export/upload' => 'orders/orders/upload',
+                'GET orders/export/download' => 'orders/orders/download',
             ]
         ],
         i18n' => [

@@ -4,8 +4,21 @@ namespace orders\classes\export\types;
 
 use Yii;
 
+/**
+ * Interface TypeInterface
+ * @package orders\classes\export\types
+ */
 interface TypeInterface
 {
-    public function store(array $data, ?string $file = null): string;
+
+    /**
+     * @param array $data
+     * @return string
+     */
+    public function convert(array $data): string;
+
+    /**
+     * @return mixed
+     */
     public function getExtension();
 }
