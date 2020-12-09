@@ -9,6 +9,9 @@ use Yii;
 
 /**
  * Class OrderManager
+ *
+ * Generates data for the table
+ *
  * @package app\modules\orders\classes\orders
  */
 class OrderManager
