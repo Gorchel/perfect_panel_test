@@ -50,18 +50,17 @@ class FilterValidation
         }
 
         if (!empty($this->request->get('mode'))) {
-            if (
-                !is_int($this->request->get('mode')) &&
-                !in_array($this->request->get('mode'), array_keys(ModeGetter::getModes()))
-            ) {
+            $mode = intval($this->request->get('mode'));
+
+            if (!in_array($mode, array_keys(ModeGetter::getModes()))) {
                 throw new ErrorException("Wrong type of mode params");
             }
 
-            $filters['mode'] = $this->request->get('mode');
+            $filters['mode'] = $mode;
         }
 
         if (!empty($this->request->get('service_id'))) {
-            if (!is_int($this->request->get('service_id'))) {
+            if (empty(intval($this->request->get('service_id')))) {
                 throw new ErrorException("Wrong type of service_id params");
             }
 

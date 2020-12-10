@@ -54,7 +54,7 @@ class ServicesManager
     protected function filter(&$query)
     {
         if (isset($this->filters['status_id'])) {
-            $query->where(['status' => $this->filters['status_id']]);
+            $query->andWhere(['status' => $this->filters['status_id']]);
         }
     }
 }

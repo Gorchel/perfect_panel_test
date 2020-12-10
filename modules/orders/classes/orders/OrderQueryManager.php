@@ -80,15 +80,15 @@ class OrderQueryManager
     protected function filter(&$query)
     {
         if (isset($this->filters['status_id'])) {
-            $query->where(['status' => $this->filters['status_id']]);
+            $query->andWhere(['status' => $this->filters['status_id']]);
         }
 
-        if (isset($this->filters['mode']) && !is_null($this->filters['mode']) && $this->filters['mode'] >= 0) {
-            $query->where(['mode' => $this->filters['mode']]);
+        if (isset($this->filters['mode']) && $this->filters['mode'] >= 0) {
+            $query->andWhere(['mode' => $this->filters['mode']]);
         }
 
         if (isset($this->filters['service_id']) && !empty($this->filters['service_id'])) {
-            $query->where(['service_id' => $this->filters['service_id']]);
+            $query->andWhere(['service_id' => $this->filters['service_id']]);
         }
 
         if (
@@ -101,13 +101,13 @@ class OrderQueryManager
                     $value = intval($this->filters['search']);
 
                     if (!empty($value)) {
-                        $query->where(['id' => $value]);
+                        $query->andWhere(['id' => $value]);
                     }
                     break;
                 case 2:
                     $value = $this->filters['search'];
 
-                    $query->where(['like', 'link', $value]);
+                    $query->andWhere(['like', 'link', $value]);
                     break;
                 case 3:
                     $value = $this->filters['search'];
