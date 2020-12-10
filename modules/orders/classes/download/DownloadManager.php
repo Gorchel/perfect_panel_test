@@ -2,8 +2,6 @@
 
 namespace orders\classes\download;
 
-use yii\helpers\VarDumper;
-
 /**
  * Class DownloadManager
  * @package orders\classes\download

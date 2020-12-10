@@ -2,12 +2,10 @@
 
 namespace orders\classes\orders;
 
-use orders\classes\getters\StatusGetter;
 use orders\models\Orders;
 use yii\data\Pagination;
 use yii\helpers\Url;
 use orders\classes\getters\OrdersGetter;
-use yii\helpers\VarDumper;
 
 /**
  * Class OrderQueryManager

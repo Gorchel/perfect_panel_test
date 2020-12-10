@@ -5,8 +5,6 @@ namespace orders\classes\export;
 use orders\classes\export\types\Csv;
 use orders\classes\getters\ExportGetter;
 use orders\classes\orders\OrderQueryManager;
-use yii\data\Pagination;
-use yii\helpers\VarDumper;
 use \yii\web\Request;
 use Yii;
 
@@ -71,45 +69,16 @@ class PrepareExport
         $links = [];
 
         foreach ($query->batch($limit) as $orders) {
-            VarDumper::dump(count($orders));
-//            $body = $this->makeExportBody($orders);
-//
-//            array_unshift($body, $this->header);
-//
-//            $filePath = $this->exportManager->make($body);
-//
-//            if (!empty($filePath)) {
-//                $links[] = $filePath;
-//            }
+            $body = $this->makeExportBody($orders);
+
+            array_unshift($body, $this->header);
+
+            $filePath = $this->exportManager->make($body);
+
+            if (!empty($filePath)) {
+                $links[] = $filePath;
+            }
         }
-
-        VarDumper::dump($links);
-
-//        $pagination = new Pagination([
-//            'defaultPageSize' => $limit,
-//            'pageSizeLimit' => [1, $limit],
-//            'totalCount' => $query->count(),
-//        ]);
-
-//        $links = [];
-//
-//        for ($i=1; $i<=$pagination->pageCount; $i++) {
-//            $offset = intval($i * $limit);
-//            $orders = $ordersQueryManager->getQuery()
-//                ->offset($offset)
-//                ->limit($limit)
-//                ->all();
-//
-//            $body = $this->makeExportBody($orders);
-//
-//            array_unshift($body, $this->header);
-//
-//            $filePath = $this->exportManager->make($body);
-//
-//            if (!empty($filePath)) {
-//                $links[] = $filePath;
-//            }
-//        }
 
         return $links;
     }

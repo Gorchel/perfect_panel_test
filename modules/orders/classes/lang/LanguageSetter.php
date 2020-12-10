@@ -3,7 +3,6 @@
 namespace orders\classes\lang;
 
 use Yii;
-use yii\helpers\VarDumper;
 
 /**
  * Class LanguageSetter
