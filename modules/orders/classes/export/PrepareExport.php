@@ -6,7 +6,6 @@ use orders\classes\export\types\Csv;
 use orders\classes\getters\ExportGetter;
 use orders\classes\orders\OrderQueryManager;
 use \yii\web\Request;
-use Yii;
 
 /**
  * Class PrepareExport
@@ -73,10 +72,10 @@ class PrepareExport
 
             array_unshift($body, $this->header);
 
-            $filePath = $this->exportManager->make($body);
+            $fileName = $this->exportManager->make($body);
 
-            if (!empty($filePath)) {
-                $links[] = $filePath;
+            if (!empty($fileName)) {
+                $links[] = $fileName;
             }
         }
 

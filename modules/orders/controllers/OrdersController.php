@@ -46,6 +46,7 @@ class OrdersController extends Controller
 
     /**
      * @return string
+     * @throws \yii\base\ErrorException
      */
     public function actionExport()
     {
@@ -56,7 +57,7 @@ class OrdersController extends Controller
         $response = $exportCsv->handle();
 
         if (empty($response)) {
-            return $this->render('export/empty_link');
+            return $this->render('export/empty_list');
         }
 
         return $this->render('export/download_links', [

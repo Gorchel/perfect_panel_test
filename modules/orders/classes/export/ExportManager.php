@@ -17,11 +17,23 @@ class ExportManager
     protected $typeClient;
 
     /**
+     * @var
+     */
+    protected $dir;
+
+    /**
      * ExportManager constructor.
      * @param TypeInterface $typeClient
      */
     public function __construct(TypeInterface $typeClient)
     {
+        $exportGetter = new ExportGetter();
+        $this->dir = $exportGetter->getExportDir();
+
+        if (!file_exists($this->dir)) {
+            mkdir($this->dir, 0777, true);
+        }
+
         $this->typeClient = $typeClient;
     }
 
@@ -33,46 +45,24 @@ class ExportManager
      */
     public function make(array $createData)
     {
-        $file = $this->makeFile();
+        $fileName = $this->randomFileName();
 
-        if($file && !is_dir(dirname($file))) {
-            return false;
-        }
+        $file = $this->dir.'/'.$fileName;
 
         $exportString = $this->typeClient->convert($createData);
 
         file_put_contents($file, $exportString);
 
-        return $file;
-    }
-
-    /**
-     * Create dir for files
-     *
-     * @return string
-     */
-    protected function makeFile()
-    {
-        $exportGetter = new ExportGetter();
-        $dir = $exportGetter->getExportDir();
-
-        if (!file_exists($dir)) {
-            mkdir($dir, 0777, true);
-        }
-
-        $file = $dir.'/'.$this->randomFileName();
-
-        return $file;
+        return $fileName;
     }
 
     /**
      * Make random file name
      *
-     * @param false $extension
      * @return string
      */
-    private function randomFileName($extension = false)
+    private function randomFileName()
     {
-        return $name = md5(microtime() . rand(0, 1000)).'.'.$this->typeClient->getExtension();
+        return md5(microtime() . rand(0, 1000)).'.'.$this->typeClient->getExtension();
     }
 }

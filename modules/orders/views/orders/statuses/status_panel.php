@@ -1,4 +1,4 @@
- <?php
+<?php
     $requestStatus = Yii::$app->request->get('status');
 ?>
 <ul class="nav nav-tabs p-b">
