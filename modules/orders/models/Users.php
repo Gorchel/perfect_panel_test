@@ -2,6 +2,7 @@
 
 namespace orders\models;
 
+use orders\classes\getters\StatusGetter;
 use yii\db\ActiveRecord;
 
 /**
@@ -19,6 +20,14 @@ class Users extends ActiveRecord
     public static function tableName()
     {
         return 'users';
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 
     /**

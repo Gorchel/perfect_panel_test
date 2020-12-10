@@ -9,24 +9,40 @@ namespace orders\classes\getters;
 class ExportGetter
 {
     /**
-     *
+     * @var array|string[]
      */
-    public const HEADER = [
-        'ID', 'User', 'Link', 'Quantity','Service','Status','Mode','Created'
+    protected static array $header = [
+        'ID',
+        'User',
+        'Link',
+        'Quantity',
+        'Service',
+        'Status',
+        'Mode',
+        'Created'
     ];
 
     /**
-     * @return mixed
+     * @return array|string[]
      */
-    public function getExportFormat()
+    public static function getHeader()
     {
-        return $_ENV['EXPORT_FORMAT'];
+        return self::$header;
     }
 
     /**
      * @return mixed
      */
-    public function getExportDir()
+    public static function getExportFormat()
+    {
+        return $_ENV['EXPORT_FORMAT'];
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public static function getExportDir()
     {
         return $_ENV['EXPORT_DIR'];
     }

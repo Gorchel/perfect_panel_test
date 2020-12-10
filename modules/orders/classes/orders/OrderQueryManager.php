@@ -2,10 +2,12 @@
 
 namespace orders\classes\orders;
 
+use orders\classes\getters\OrdersGetter;
 use orders\models\Orders;
 use yii\data\Pagination;
+use yii\db\ActiveQuery;
 use yii\helpers\Url;
-use orders\classes\getters\OrdersGetter;
+use yii\helpers\VarDumper;
 
 /**
  * Class OrderQueryManager
@@ -16,28 +18,30 @@ use orders\classes\getters\OrdersGetter;
  */
 class OrderQueryManager
 {
-    /**
-     * @var
-     */
-    protected $filters;
 
     /**
-     * OrdersGetter constructor.
-     * @param $filters
+     * @var array
      */
-    public function __construct($filters)
+    protected array $filters;
+
+
+    /**
+     * OrderQueryManager constructor.
+     * @param array $filters
+     */
+    public function __construct(array $filters = [])
     {
         $this->filters = $filters;
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getQuery()
     {
         $query = Orders::find();
 
-        $query->with(['users','services']);
+        $query->with(['users', 'services']);
 
         $this->filter($query);
 
@@ -49,16 +53,16 @@ class OrderQueryManager
      */
     public function getPaginationList()
     {
-        $orderGetter = new OrdersGetter();
-
         $query = $this->getQuery();
 
-        $pagination = new Pagination([
-             'defaultPageSize' => $orderGetter->getPerPage(),
-             'pageSizeLimit' => [1, 100],
-             'totalCount' => $query->count(),
-             'route' => Url::to(['/orders']),
-         ]);
+        $pagination = new Pagination(
+            [
+                'defaultPageSize' => OrdersGetter::getPerPage(),
+                'pageSizeLimit' => [1, 100],
+                'totalCount' => $query->count(),
+                'route' => Url::to(['/orders']),
+            ]
+        );
 
         $query->offset($pagination->offset)
             ->limit($pagination->limit)
@@ -108,12 +112,14 @@ class OrderQueryManager
                 case 3:
                     $value = $this->filters['search'];
 
-                    $query->joinWith([
-                         'users' => function($query) use ($value) {
-                             $query->where(['like', 'CONCAT(users.first_name," ",users.last_name)', $value]);
-                             $query->orWhere(['like', 'CONCAT(users.last_name," ",users.first_name)', $value]);
-                         },
-                    ]);
+                    $query->joinWith(
+                        [
+                            'users' => function ($query) use ($value) {
+                                $query->where(['like', 'CONCAT(users.first_name," ",users.last_name)', $value]);
+                                $query->orWhere(['like', 'CONCAT(users.last_name," ",users.first_name)', $value]);
+                            },
+                        ]
+                    );
                     break;
             }
         }

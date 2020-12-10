@@ -17,7 +17,7 @@ class Csv implements TypeInterface
      */
     public function convert(array $createData): string
     {
-        if(!is_array($createData)) {
+        if (!is_array($createData)) {
             return false;
         }
 
@@ -41,7 +41,7 @@ class Csv implements TypeInterface
         $fh = fopen('php://temp', 'rw');
 
         # write out the data
-        foreach ( $createData as $row ) {
+        foreach ($createData as $row) {
             fputcsv($fh, $row);
         }
         rewind($fh);

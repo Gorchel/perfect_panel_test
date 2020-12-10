@@ -24,7 +24,7 @@ class UrlHelper
             $path = self::getPath();
         }
 
-        return $path.'?'.http_build_query($params);
+        return $path . '?' . http_build_query($params);
     }
 
     /**

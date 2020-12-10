@@ -2,6 +2,7 @@
 
 namespace orders\models;
 
+use orders\classes\getters\ModeGetter;
 use orders\classes\getters\StatusGetter;
 use yii\db\ActiveRecord;
 use Carbon\Carbon;
@@ -19,12 +20,7 @@ use Carbon\Carbon;
  * @property int $mode 0 - Manual, 1 - Auto
  */
 class Orders extends ActiveRecord
-{   
-    protected $modes = [
-        0 => 'Manual',
-        1 => 'Auto',
-    ];
-
+{
     /**
      * {@inheritdoc}
      */
@@ -45,29 +41,53 @@ class Orders extends ActiveRecord
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getUsers()
     {
-        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+        return $this->hasOne(Users::class, ['id' => 'user_id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getServices()
     {
-        return $this->hasOne(Services::className(), ['id' => 'service_id']);
+        return $this->hasOne(Services::class, ['id' => 'service_id']);
     }
 
+    /**
+     * @return string
+     */
     public function getStatusName()
     {
-        return StatusGetter::STATUSES_LIST[$this->status];
+        return StatusGetter::getValue($this->status);
     }
 
+    /**
+     * @return string|null
+     */
     public function getModeName()
-    {   
-        return $this->modes[$this->mode];
+    {
+        $modes = ModeGetter::getModes();
+        return isset($modes[$this->mode]) ? $modes[$this->mode]['key'] : null;
     }
 
+    /**
+     * @return string
+     */
     public function getHumanCreatedAt()
-    {   
+    {
         return Carbon::createFromTimestamp($this->created_at)->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getUserFullName()
+    {
+        return !empty($this->users) ? $this->users->fullName : '';
     }
 
     /**

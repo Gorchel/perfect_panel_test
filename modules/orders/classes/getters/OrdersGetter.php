@@ -12,7 +12,7 @@ class OrdersGetter
     /**
      * @return mixed
      */
-    public function getPerPage()
+    public static function getPerPage()
     {
         return $_ENV['ORDERS_PER_PAGE'];
     }

@@ -13,15 +13,15 @@ class LanguageSetter
     /**
      * @var string
      */
-    protected $lang;
+    protected string $lang;
 
     /**
      * LanguageSwitcher constructor.
-     * @param string $lang
+     * @param string|null $lang
      */
     public function __construct(?string $lang = null)
     {
-        switch($lang) {
+        switch ($lang) {
             case 'ru':
                 $this->lang = 'ru-RU';
                 break;
@@ -34,7 +34,8 @@ class LanguageSetter
     /**
      * Set localization
      */
-    public function set() {
+    public function set()
+    {
         if (!empty($this->lang)) {
             Yii::$app->language = $this->lang;
         }

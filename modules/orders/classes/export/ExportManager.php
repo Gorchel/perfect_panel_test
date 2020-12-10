@@ -14,7 +14,7 @@ class ExportManager
     /**
      * @var TypeInterface
      */
-    protected $typeClient;
+    protected TypeInterface $typeClient;
 
     /**
      * @var
@@ -27,8 +27,7 @@ class ExportManager
      */
     public function __construct(TypeInterface $typeClient)
     {
-        $exportGetter = new ExportGetter();
-        $this->dir = $exportGetter->getExportDir();
+        $this->dir = ExportGetter::getExportDir();
 
         if (!file_exists($this->dir)) {
             mkdir($this->dir, 0777, true);
@@ -47,7 +46,7 @@ class ExportManager
     {
         $fileName = $this->randomFileName();
 
-        $file = $this->dir.'/'.$fileName;
+        $file = $this->dir . '/' . $fileName;
 
         $exportString = $this->typeClient->convert($createData);
 
@@ -63,6 +62,6 @@ class ExportManager
      */
     private function randomFileName()
     {
-        return md5(microtime() . rand(0, 1000)).'.'.$this->typeClient->getExtension();
+        return md5(microtime() . rand(0, 1000)) . '.' . $this->typeClient->getExtension();
     }
 }

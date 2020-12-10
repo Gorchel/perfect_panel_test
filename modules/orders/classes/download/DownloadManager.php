@@ -2,7 +2,9 @@
 
 namespace orders\classes\download;
 
+use Exception;
 use orders\classes\getters\ExportGetter;
+use yii\console\Response;
 
 /**
  * Class DownloadManager
@@ -20,23 +22,23 @@ class DownloadManager
      */
     public function __construct()
     {
-        $exportGetter = new ExportGetter();
-        $this->dir = $exportGetter->getExportDir();
+        $this->dir = ExportGetter::getExportDir();
     }
 
     /**
      * Download file by path
      *
      * @param string $fileName
-     * @return \yii\console\Response|\yii\web\Response
-     * @throws \Exception
+     * @return Response|\yii\web\Response
+     * @throws Exception
      */
-    public function download(string $fileName) {
-        $filePath = $this->dir.'/'.$fileName;
+    public function download(string $fileName)
+    {
+        $filePath = $this->dir . '/' . $fileName;
 
         if (file_exists($filePath)) {
             return \Yii::$app->response->sendFile($filePath);
         }
-        throw new \Exception('File not found', 500);
+        throw new Exception('File not found', 500);
     }
 }

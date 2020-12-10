@@ -5,6 +5,7 @@ namespace orders\classes\orders;
 use orders\classes\getters\FilterGetter;
 use orders\classes\getters\StatusGetter;
 use orders\classes\getters\ModeGetter;
+use yii\helpers\VarDumper;
 use \yii\web\Request;
 use \yii\base\ErrorException;
 
@@ -20,7 +21,7 @@ class FilterValidation
     /**
      * @var Request
      */
-    protected $request;
+    protected Request $request;
 
     /**
      * FilterValidation constructor.
@@ -40,19 +41,18 @@ class FilterValidation
         $filters = [];
 
         if (!empty($this->request->get('status'))) {
-            $statusGetter = new StatusGetter();
-            if (!in_array($this->request->get('status'), $statusGetter->getLowerList())) {
-                throw new ErrorException("Status ".$this->request->get('status').' is no found');
+            if (!in_array($this->request->get('status'), StatusGetter::getListByKey('slug'))) {
+                throw new ErrorException("Status " . $this->request->get('status') . ' is no found');
             }
 
             $filters['status'] = $this->request->get('status');
-            $filters['status_id'] = $statusGetter->transformStatus2Key($filters['status']);
+            $filters['status_id'] = StatusGetter::getKeyByKeyName($filters['status'], 'slug');
         }
 
         if (!empty($this->request->get('mode'))) {
             if (
                 !is_int($this->request->get('mode')) &&
-                !in_array($this->request->get('mode'), array_keys(ModeGetter::MODES))
+                !in_array($this->request->get('mode'), array_keys(ModeGetter::getModes()))
             ) {
                 throw new ErrorException("Wrong type of mode params");
             }
@@ -71,7 +71,7 @@ class FilterValidation
         if (!empty($this->request->get('search'))) {
             if (
                 !is_int($this->request->get('search-type')) &&
-                !in_array($this->request->get('search-type'), array_keys(FilterGetter::SEARCH_TYPES))
+                !in_array($this->request->get('search-type'), array_keys(FilterGetter::getSearchTypes()))
             ) {
                 throw new ErrorException("Wrong type of search-type params");
             }

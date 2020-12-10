@@ -8,39 +8,70 @@ namespace orders\classes\getters;
  */
 class StatusGetter
 {
-    public const STATUSES_LIST = [
-        0 => 'Pending',
-        1 => 'In progress',
-        2 => 'Completed',
-        3 => 'Canceled',
-        4 => 'Error',
+    /**
+     * @var string[][]
+     */
+    private static array $statusList = [
+        0 => ['slug' => 'pending', 'name' => 'Pending'],
+        1 => ['slug' => 'in_progress', 'name' => 'In progress'],
+        2 => ['slug' => 'completed', 'name' => 'Completed'],
+        3 => ['slug' => 'canceled', 'name' => 'Canceled'],
+        4 => ['slug' => 'error', 'name' => 'Error'],
     ];
 
     /**
-     * Return all statuses in lower case
-     *
-     * @return string[]
+     * @return string[][]
      */
-    public function getLowerList()
+    public static function getList()
     {
-        $statuses = [];
-
-        foreach (self::STATUSES_LIST as $status) {
-            $statuses[] = strtolower(str_replace(' ','_',$status));
-        }
-
-        return $statuses;
+        return self::$statusList;
     }
 
     /**
-     * Return status key by string value
+     * Return value by status id and key
      *
-     * @param $status
-     * @return mixed
+     * @param int $statusId
+     * @param string $key
+     * @return string|null
      */
-    public function transformStatus2Key($status)
-	{	
-		$firstCapitalLetterStatus = ucfirst(str_replace('_',' ',$status));
-		return array_flip(self::STATUSES_LIST)[$firstCapitalLetterStatus];
-	}
+    public static function getValue(int $statusId, string $key = 'name')
+    {
+        $list = self::getList();
+        return isset($list[$statusId][$key]) ? $list[$statusId][$key] : null;
+    }
+
+    /**
+     * Return raw by key
+     *
+     * @param string $key
+     * @return array
+     */
+    public static function getListByKey(string $key = 'name')
+    {
+        $list = [];
+
+        foreach (self::getList() as $statusArr) {
+            $list[] = $statusArr[$key];
+        }
+
+        return $list;
+    }
+
+    /**
+     * Return status key by keyName
+     *
+     * @param string $status
+     * @param string $keyName
+     * @return int|string|null
+     */
+    public static function getKeyByKeyName(string $status, string $keyName = 'name')
+    {
+        foreach (self::getList() as $key => $statusArr) {
+            if ($statusArr[$keyName] === $status) {
+                return $key;
+            }
+        }
+
+        return null;
+    }
 }

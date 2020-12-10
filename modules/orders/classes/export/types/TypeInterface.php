@@ -2,8 +2,6 @@
 
 namespace orders\classes\export\types;
 
-use Yii;
-
 /**
  * Interface TypeInterface
  * @package orders\classes\export\types

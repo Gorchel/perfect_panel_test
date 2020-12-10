@@ -20,10 +20,11 @@ class PrepareExport
      * @var Request
      */
     protected $filters;
+
     /**
      * @var ExportManager
      */
-    protected $exportManager;
+    protected ExportManager $exportManager;
 
     /**
      * @var string[]
@@ -34,10 +35,9 @@ class PrepareExport
     {
         $this->filters = $filters;
 
-        $exportGetter = new ExportGetter();
-        $this->header = $exportGetter::HEADER;
+        $this->header = ExportGetter::getHeader();
 
-        switch ($exportGetter->getExportFormat()) {
+        switch (ExportGetter::getExportFormat()) {
             case 'csv':
                 $exportType = new Csv();
                 break;
@@ -95,7 +95,7 @@ class PrepareExport
         foreach ($orders as $order) {
             $raws[] = [
                 $order->id,
-                !empty($order->users) ? $order->users->first_name . ' ' . $order->users->last_name : '',
+                $order->userFullName,
                 $order->link,
                 $order->quantity,
                 !empty($order->services) ? $order->services->id . ': ' . $order->services->name : '',

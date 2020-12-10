@@ -14,7 +14,7 @@ class OrderManager
     /**
      * @var array
      */
-    protected $filters;
+    protected array $filters;
 
     /**
      * OrderManager constructor.

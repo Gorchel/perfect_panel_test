@@ -13,16 +13,17 @@ use yii\db\Query;
  */
 class ServicesManager
 {
+
     /**
-     * @var
+     * @var array
      */
-    protected $filters;
+    protected array $filters;
 
     /**
      * ServicesManager constructor.
-     * @param $filters
+     * @param array $filters
      */
-    public function __construct($filters)
+    public function __construct(array $filters = [])
     {
         $this->filters = $filters;
     }
