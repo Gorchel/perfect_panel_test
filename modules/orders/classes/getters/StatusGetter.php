@@ -41,7 +41,7 @@ class StatusGetter
     }
 
     /**
-     * Return raw by key
+     * Return values bu key
      *
      * @param string $key
      * @return array

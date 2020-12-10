@@ -19,4 +19,12 @@ class ModeGetter
             1 => ['slug' => 'auto', 'key' => 'Auto'],
         ];
     }
+
+    /**
+     * @return array
+     */
+    public static function getKeys()
+    {
+        return array_keys(self::getModes());
+    }
 }

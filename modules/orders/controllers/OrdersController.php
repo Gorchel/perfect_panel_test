@@ -12,6 +12,7 @@ use orders\classes\orders\FilterValidation;
 use orders\classes\orders\OrderManager;
 use orders\classes\services\ServicesManager;
 use Yii;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\HttpException;
 use Exception;
@@ -28,12 +29,12 @@ class OrdersController extends Controller
     public function actionIndex()
     {
         $filterValidation = new FilterValidation(Yii::$app->request);
-        $filters = $filterValidation->validate();
+        $filterModel = $filterValidation->validate();
 
-        $orderManager = new OrderManager($filters);
+        $orderManager = new OrderManager($filterModel);
         $paginationList = $orderManager->handle();
 
-        $serviceManager = new ServicesManager($filters);
+        $serviceManager = new ServicesManager($filterModel);
         $servicesList = $serviceManager->getList();
 
         return $this->render(
@@ -55,9 +56,9 @@ class OrdersController extends Controller
     public function actionExport()
     {
         $filterValidation = new FilterValidation(Yii::$app->request);
-        $filters = $filterValidation->validate();
+        $filterModel = $filterValidation->validate();
 
-        $exportCsv = new PrepareExport($filters);
+        $exportCsv = new PrepareExport($filterModel);
         $response = $exportCsv->handle();
 
         if (empty($response)) {

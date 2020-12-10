@@ -24,4 +24,42 @@ class FilterGetter
     {
         return self::$searchTypes;
     }
+
+    /**
+     * @return string[]
+     */
+    public static function filterFields()
+    {
+        return [
+            'status',
+            'mode',
+            'service_id',
+            'search',
+            'search-type',
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getRules()
+    {
+        return [
+            ['mode', 'in', ['range' => ModeGetter::getKeys()]],
+            ['status', 'in', ['range' => StatusGetter::getListByKey('slug')]],
+            ['status', 'string'],
+            [['mode', 'service_id', 'status_id'], 'integer'],
+        ];
+    }
+
+    /**
+     * differs from getRules
+     * validation is performed if the key field exists
+     */
+    public static function getSearchingRules()
+    {
+        return [
+            'search-type' => [['search', 'search-type'], 'required'],
+        ];
+    }
 }

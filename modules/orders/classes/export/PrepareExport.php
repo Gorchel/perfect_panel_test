@@ -5,6 +5,7 @@ namespace orders\classes\export;
 use orders\classes\export\types\Csv;
 use orders\classes\getters\ExportGetter;
 use orders\classes\orders\OrderQueryManager;
+use yii\base\DynamicModel;
 use \yii\web\Request;
 
 /**
@@ -17,9 +18,9 @@ use \yii\web\Request;
 class PrepareExport
 {
     /**
-     * @var Request
+     * @var DynamicModel|null
      */
-    protected $filters;
+    protected ?DynamicModel $filterModel;
 
     /**
      * @var ExportManager
@@ -29,11 +30,15 @@ class PrepareExport
     /**
      * @var string[]
      */
-    protected $header;
+    protected array $header;
 
-    public function __construct(array $filters = [])
+    /**
+     * PrepareExport constructor.
+     * @param DynamicModel|null $filterModel
+     */
+    public function __construct(?DynamicModel $filterModel = null)
     {
-        $this->filters = $filters;
+        $this->filterModel = $filterModel;
 
         $this->header = ExportGetter::getHeader();
 
@@ -50,13 +55,11 @@ class PrepareExport
 
 
     /**
-     * Main method, make links and store export files
-     *
      * @return array|false
      */
     public function handle()
     {
-        $ordersQueryManager = new OrderQueryManager($this->filters);
+        $ordersQueryManager = new OrderQueryManager($this->filterModel);
         $query = $ordersQueryManager->getQuery();
         $count = $query->count();
 

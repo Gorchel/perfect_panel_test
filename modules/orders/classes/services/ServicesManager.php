@@ -2,6 +2,7 @@
 
 namespace orders\classes\services;
 
+use yii\base\DynamicModel;
 use yii\db\Query;
 
 /**
@@ -13,19 +14,18 @@ use yii\db\Query;
  */
 class ServicesManager
 {
-
     /**
-     * @var array
+     * @var DynamicModel|null
      */
-    protected array $filters;
+    protected ?DynamicModel $filterModel;
 
     /**
      * ServicesManager constructor.
-     * @param array $filters
+     * @param DynamicModel|null $filterModel
      */
-    public function __construct(array $filters = [])
+    public function __construct(?DynamicModel $filterModel = null)
     {
-        $this->filters = $filters;
+        $this->filterModel = $filterModel;
     }
 
     /**
@@ -53,8 +53,10 @@ class ServicesManager
      */
     protected function filter(&$query)
     {
-        if (isset($this->filters['status_id'])) {
-            $query->andWhere(['status' => $this->filters['status_id']]);
+        if (!empty($this->filterModel)) {
+            if (isset($this->filterModel->status_id)) {
+                $query->andWhere(['status' => $this->filterModel->status_id]);
+            }
         }
     }
 }

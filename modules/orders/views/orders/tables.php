@@ -61,7 +61,7 @@
             <?php
         }
     } else {
-        echo '<tr><td colpan="99">Orders not found</td></tr>';
+        echo '<tr><td colspan="99" class="text-center">Orders not found</td></tr>';
     }
     ?>
     </tbody>

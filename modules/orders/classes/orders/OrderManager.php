@@ -2,6 +2,8 @@
 
 namespace orders\classes\orders;
 
+use yii\base\DynamicModel;
+
 /**
  * Class OrderManager
  *
@@ -11,18 +13,19 @@ namespace orders\classes\orders;
  */
 class OrderManager
 {
+
     /**
-     * @var array
+     * @var DynamicModel|null
      */
-    protected array $filters;
+    protected ?DynamicModel $filterModel;
 
     /**
      * OrderManager constructor.
-     * @param array $filters
+     * @param DynamicModel|null $filterModel
      */
-    public function __construct(array $filters = [])
+    public function __construct(?DynamicModel $filterModel = null)
     {
-        $this->filters = $filters;
+        $this->filterModel = $filterModel;
     }
 
     /**
@@ -33,7 +36,7 @@ class OrderManager
     public function handle()
     {
         //Get Pagination List
-        $ordersQueryManager = new OrderQueryManager($this->filters);
+        $ordersQueryManager = new OrderQueryManager($this->filterModel);
         $paginationList = $ordersQueryManager->getPaginationList();
 
         //get orders

@@ -4,6 +4,7 @@ namespace orders\classes\orders;
 
 use orders\classes\getters\OrdersGetter;
 use orders\models\Orders;
+use yii\base\DynamicModel;
 use yii\data\Pagination;
 use yii\db\ActiveQuery;
 use yii\helpers\Url;
@@ -18,20 +19,18 @@ use yii\helpers\VarDumper;
  */
 class OrderQueryManager
 {
-
     /**
-     * @var array
+     * @var ?DynamicModel|null
      */
-    protected array $filters;
-
+    protected ?DynamicModel $filterModel;
 
     /**
      * OrderQueryManager constructor.
-     * @param array $filters
+     * @param DynamicModel|null $filterModel
      */
-    public function __construct(array $filters = [])
+    public function __construct(?DynamicModel $filterModel = null)
     {
-        $this->filters = $filters;
+        $this->filterModel = $filterModel;
     }
 
     /**
@@ -79,38 +78,34 @@ class OrderQueryManager
      */
     protected function filter(&$query)
     {
-        if (isset($this->filters['status_id'])) {
-            $query->andWhere(['status' => $this->filters['status_id']]);
-        }
+        if (!empty($this->filterModel)) {
+            if (isset($this->filterModel->status_id)) {
+                $query->andWhere(['status' => $this->filterModel->status_id]);
+            }
 
-        if (isset($this->filters['mode']) && $this->filters['mode'] >= 0) {
-            $query->andWhere(['mode' => $this->filters['mode']]);
-        }
+            if (isset($this->filterModel->mode)) {
+                $query->andWhere(['mode' => $this->filterModel->mode]);
+            }
 
-        if (isset($this->filters['service_id']) && !empty($this->filters['service_id'])) {
-            $query->andWhere(['service_id' => $this->filters['service_id']]);
-        }
+            if (isset($this->filterModel->service_id)) {
+                $query->andWhere(['service_id' => $this->filterModel->service_id]);
+            }
 
-        if (
-            isset($this->filters['search-type']) &&
-            isset($this->filters['search']) &&
-            !empty($this->filters['search-type'])
-        ) {
-            switch ($this->filters['search-type']) {
+            switch ($this->filterModel['search-type']) {
                 case 1:
-                    $value = intval($this->filters['search']);
+                    $value = intval($this->filterModel['search']);
 
                     if (!empty($value)) {
                         $query->andWhere(['id' => $value]);
                     }
                     break;
                 case 2:
-                    $value = $this->filters['search'];
+                    $value = $this->filterModel['search'];
 
                     $query->andWhere(['like', 'link', $value]);
                     break;
                 case 3:
-                    $value = $this->filters['search'];
+                    $value = $this->filterModel['search'];
 
                     $query->joinWith(
                         [
