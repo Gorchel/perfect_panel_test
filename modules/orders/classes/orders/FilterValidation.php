@@ -4,11 +4,9 @@ namespace orders\classes\orders;
 
 use orders\classes\getters\FilterGetter;
 use orders\classes\getters\StatusGetter;
-use orders\classes\getters\ModeGetter;
 use yii\base\DynamicModel;
-use yii\helpers\VarDumper;
-use yii\web\Request;
 use yii\base\ErrorException;
+use yii\web\Request;
 
 /**
  * Class FilterValidation
